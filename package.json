@@ -1,0 +1,13 @@
+{
+  "name": "galaxy-fighter",
+  "version": "1.0.0",
+  "description": "Galaxy Fighter - Playable Web & Solar2D Edition",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["game", "spaceshooter", "solar2d", "canvas"],
+  "author": "",
+  "license": "MIT"
+}

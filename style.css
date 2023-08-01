@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Press+Start+2P&family=Space+Grotesk:wght@500;700&display=swap');
+
+@font-face {
+  font-family: 'GameFont';
+  src: url('recursos/fonte/font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary: #f59e0b;
+  --primary-glow: rgba(245, 158, 11, 0.4);
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.4);
+  --danger: #ef4444;
+  --success: #22c55e;
+  --bg-dark: #070a13;
+  --panel-bg: rgba(15, 23, 42, 0.85);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --font-game: 'GameFont', 'Press Start 2P', 'Space Grotesk', cursive, sans-serif;
+  --font-ui: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+body {
+  background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+  color: #f8fafc;
+  font-family: var(--font-ui);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background animated stars */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.7), rgba(0,0,0,0)),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 160px 120px, rgba(56,189,248,0.8), rgba(0,0,0,0)),
+    radial-gradient(1.5px 1.5px at 230px 190px, rgba(245,158,11,0.8), rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 250px 250px;
+  animation: starsFloat 60s linear infinite;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+@keyframes starsFloat {
+  from { background-position: 0 0; }
+  to { background-position: -500px 500px; }
+}
+
+/* App Container */
+.game-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 100vh;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Game Header / Bar */
+.top-bar {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px 14px 0 0;
+  margin-bottom: 0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.logo-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 8px var(--primary-glow));
+}
+
+.logo-title {
+  font-family: var(--font-game);
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+  letter-spacing: 1px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-icon:active {
+  transform: translateY(1px);
+}
+
+/* Canvas Viewport */
+.canvas-container {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border-left: 1px solid var(--panel-border);
+  border-right: 1px solid var(--panel-border);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.15);
+  overflow: hidden;
+}
+
+#gameCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* UI Overlays inside Canvas */
+.screen-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 10, 19, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 20;
+  transition: opacity 0.3s ease;
+  padding: 24px;
+  text-align: center;
+}
+
+.screen-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.title-glow {
+  font-family: var(--font-game);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  background: linear-gradient(180deg, #ffffff 0%, #fcd34d 50%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(245, 158, 11, 0.6));
+  margin-bottom: 8px;
+  animation: pulseTitle 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseTitle {
+  from { transform: scale(1); filter: drop-shadow(0 4px 15px rgba(245, 158, 11, 0.5)); }
+  to { transform: scale(1.02); filter: drop-shadow(0 6px 25px rgba(245, 158, 11, 0.8)); }
+}
+
+.title-sub {
+  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  color: #94a3b8;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+/* Aircraft Selector */
+.aircraft-picker {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.picker-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.aircraft-list {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.plane-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.plane-card img {
+  width: 54px;
+  height: 40px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+.plane-card span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.plane-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.plane-card.active {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+}
+
+/* Main CTA Button */
+.btn-primary {
+  font-family: var(--font-game);
+  font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+  color: #0f172a;
+  background: linear-gradient(135deg, #facc15 0%, #f97316 100%);
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4), 0 0 12px rgba(250, 204, 21, 0.3);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 28px rgba(249, 115, 22, 0.6), 0 0 20px rgba(250, 204, 21, 0.5);
+}
+
+.btn-primary:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Controls Hint / Guide Bar */
+.controls-bar {
+  width: 100%;
+  max-width: 960px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  border-radius: 0 0 14px 14px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.ctrl-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.key-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  padding: 2px 7px;
+  font-family: var(--font-game);
+  font-size: 0.7rem;
+  color: #f8fafc;
+}
+
+/* Touch / Gamepad Controls (Shown on Mobile / Touch Screens) */
+.touch-controls {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 20px 24px;
+}
+
+.touch-cluster-left,
+.touch-cluster-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.touch-cluster-right {
+  flex-direction: row;
+  align-items: center;
+}
+
+.touch-btn {
+  width: 62px;
+  height: 62px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.touch-btn img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.touch-btn.rotate-down img {
+  transform: rotate(180deg);
+}
+
+.touch-btn:active,
+.touch-btn.active {
+  background: rgba(56, 189, 248, 0.35);
+  border-color: #38bdf8;
+  transform: scale(0.92);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+}
+
+.btn-action-shoot {
+  width: 70px;
+  height: 70px;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.btn-action-shoot:active,
+.btn-action-shoot.active {
+  background: rgba(239, 68, 68, 0.4);
+  border-color: #ef4444;
+  box-shadow: 0 0 22px rgba(239, 68, 68, 0.6);
+}
+
+.btn-action-reload {
+  width: 62px;
+  height: 62px;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.btn-action-reload:active,
+.btn-action-reload.active {
+  background: rgba(245, 158, 11, 0.4);
+  border-color: #f59e0b;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.6);
+}
+
+/* Stats / Game Over / Victory Panels */
+.result-card {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  padding: 24px 32px;
+  max-width: 420px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-val {
+  font-family: var(--font-game);
+  font-size: 1.1rem;
+  color: #fbbf24;
+}
+
+.stat-lbl {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive queries */
+@media (max-width: 768px) {
+  .top-bar, .controls-bar {
+    border-radius: 0;
+  }
+  .controls-bar {
+    display: none;
+  }
+  .plane-card img {
+    width: 44px;
+    height: 32px;
+  }
+}

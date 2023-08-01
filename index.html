@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Galaxy Fighter - Retro Arcade Combat</title>
+  <meta name="description" content="Experience thrilling retro aerial combat! Dodge UFOs, reload missiles, defeat alien bosses, and set high scores in Galaxy Fighter.">
+  <link rel="icon" type="image/png" href="recursos/imagens/planes/plane_1/plane_1_red.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Animated Starfield -->
+  <div class="stars-bg"></div>
+
+  <main class="game-wrapper">
+    <!-- Top Header Bar -->
+    <header class="top-bar">
+      <div class="logo-badge">
+        <img src="recursos/imagens/planes/plane_1/plane_1_red.png" alt="Galaxy Fighter Logo" class="logo-icon">
+        <h1 class="logo-title">GALAXY FIGHTER</h1>
+      </div>
+      <div class="top-actions">
+        <button id="btnSoundToggle" class="btn-icon" aria-label="Toggle Sound" title="Toggle Sound">
+          <span id="soundIcon">🔊</span>
+          <span id="soundText">Sound ON</span>
+        </button>
+        <button id="btnPause" class="btn-icon" aria-label="Pause Game" title="Pause Game">
+          <span>⏸️</span>
+          <span>Pause</span>
+        </button>
+        <button id="btnFullscreen" class="btn-icon" aria-label="Toggle Fullscreen" title="Toggle Fullscreen">
+          <span>⛶</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Canvas Game Container -->
+    <div class="canvas-container" id="canvasContainer">
+      <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+      <!-- Start Screen Overlay -->
+      <section id="startOverlay" class="screen-overlay">
+        <h2 class="title-glow">GALAXY FIGHTER</h2>
+        <p class="title-sub">Defeat alien UFOs, dodge incoming fire, and conquer the mothership!</p>
+
+        <!-- Aircraft Selection -->
+        <div class="aircraft-picker">
+          <span class="picker-label">Select Your Fighter</span>
+          <div class="aircraft-list">
+            <div class="plane-card active" data-plane="plane_1_red">
+              <img src="recursos/imagens/planes/plane_1/plane_1_red.png" alt="Red Falcon">
+              <span>Red Falcon</span>
+            </div>
+            <div class="plane-card" data-plane="plane_1_blue">
+              <img src="recursos/imagens/planes/plane_1/plane_1_blue.png" alt="Blue Stealth">
+              <span>Blue Stealth</span>
+            </div>
+            <div class="plane-card" data-plane="plane_1_yellow">
+              <img src="recursos/imagens/planes/plane_1/plane_1_yellow.png" alt="Thunder">
+              <span>Thunder</span>
+            </div>
+            <div class="plane-card" data-plane="plane_2_green">
+              <img src="recursos/imagens/planes/plane_2/plane_2_green.png" alt="Viper">
+              <span>Viper</span>
+            </div>
+            <div class="plane-card" data-plane="plane_3_blue">
+              <img src="recursos/imagens/planes/plane_3/plane_3_blue.png" alt="Cosmo Cruiser">
+              <span>Cosmo</span>
+            </div>
+          </div>
+        </div>
+
+        <button id="btnStartGame" class="btn-primary">
+          <span>🚀 LAUNCH MISSION</span>
+        </button>
+      </section>
+
+      <!-- Game Over / Victory Overlay -->
+      <section id="resultOverlay" class="screen-overlay hidden">
+        <div class="result-card">
+          <h2 id="resultTitle" class="title-glow">MISSION OVER</h2>
+          <div class="stat-grid">
+            <div class="stat-box">
+              <span class="stat-val" id="statCoins">0</span>
+              <span class="stat-lbl">Coins Collected</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val" id="statKills">0</span>
+              <span class="stat-lbl">UFOs Destroyed</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val" id="statScore">0</span>
+              <span class="stat-lbl">Final Score</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-val" id="statHighScore">0</span>
+              <span class="stat-lbl">Best Score</span>
+            </div>
+          </div>
+          <button id="btnRestart" class="btn-primary">
+            <span>🔄 PLAY AGAIN</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Pause Overlay -->
+      <section id="pauseOverlay" class="screen-overlay hidden">
+        <div class="result-card">
+          <h2 class="title-glow">PAUSED</h2>
+          <p class="title-sub">Mission paused. Take a breath, pilot!</p>
+          <div style="display: flex; gap: 14px;">
+            <button id="btnResume" class="btn-primary"><span>▶ RESUME</span></button>
+            <button id="btnQuit" class="btn-icon" style="padding: 14px 20px;"><span>🏠 MENU</span></button>
+          </div>
+        </div>
+      </section>
+
+      <!-- On-Screen Virtual Gamepad (For touch & mobile devices) -->
+      <div id="touchControls" class="touch-controls">
+        <!-- Left: Up & Down movement arrows -->
+        <div class="touch-cluster-left">
+          <button id="touchUp" class="touch-btn" aria-label="Fly Up">
+            <img src="recursos/imagens/UI/botao_cima.png" alt="Up">
+          </button>
+          <button id="touchDown" class="touch-btn rotate-down" aria-label="Fly Down">
+            <img src="recursos/imagens/UI/botao_cima.png" alt="Down">
+          </button>
+        </div>
+
+        <!-- Right: Shoot & Reload action buttons -->
+        <div class="touch-cluster-right">
+          <button id="touchReload" class="touch-btn btn-action-reload" aria-label="Reload Missile">
+            <img src="recursos/imagens/UI/Button - PS Circle 2.png" alt="Reload">
+          </button>
+          <button id="touchShoot" class="touch-btn btn-action-shoot" aria-label="Fire Missile">
+            <img src="recursos/imagens/UI/Button - PS Cross 2.png" alt="Fire">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Controls & Keybindings Guide Bar -->
+    <footer class="controls-bar">
+      <div class="ctrl-group">
+        <span class="key-badge">W</span> <span class="key-badge">S</span> or <span class="key-badge">▲</span> <span class="key-badge">▼</span>
+        <span>Fly Up / Down</span>
+      </div>
+      <div class="ctrl-group">
+        <span class="key-badge">SPACE</span> or <span class="key-badge">J</span>
+        <span>Fire Missile</span>
+      </div>
+      <div class="ctrl-group">
+        <span class="key-badge">R</span> or <span class="key-badge">K</span>
+        <span>Reload Ammo (Max 3)</span>
+      </div>
+      <div class="ctrl-group">
+        <span class="key-badge">P</span>
+        <span>Pause</span>
+      </div>
+      <div class="ctrl-group">
+        <span class="key-badge">M</span>
+        <span>Mute</span>
+      </div>
+    </footer>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
