@@ -5,3 +5,4 @@ build_step_4: 2023-08-01 12:36:48 +0530 - Setup scene manager using composer mod
 build_step_5: 2023-08-01 13:34:10 +0530 - Create start scene layout and touch listeners
 build_step_6: 2023-08-01 14:24:07 +0530 - Add mountain background parallax layer
 build_step_7: 2023-08-01 15:09:10 +0530 - Implement player aircraft sprite rendering
+build_step_8: 2023-08-01 16:03:19 +0530 - Add static and dynamic physics bodies for player
