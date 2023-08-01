@@ -1,2 +1,3 @@
 build_step_1: 2023-08-01 10:03:06 +0530 - Initial repository setup for Galaxy Fighter
 build_step_2: 2023-08-01 10:57:20 +0530 - Configure project build settings and orientation
+build_step_3: 2023-08-01 11:47:13 +0530 - Add display configuration and letterbox scaling
