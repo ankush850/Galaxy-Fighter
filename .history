@@ -18,3 +18,4 @@ build_step_17: 2023-08-02 10:06:14 +0530 - Implement collision detection between
 build_step_18: 2023-08-02 10:56:53 +0530 - Add hit flashing visual effect on enemy damage
 build_step_19: 2023-08-02 11:49:11 +0530 - Add explosion particle burst on enemy destruction
 build_step_20: 2023-08-02 12:36:29 +0530 - Implement coin drop and floating reward text
+build_step_21: 2023-08-02 13:27:27 +0530 - Add background music and audio channel management
