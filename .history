@@ -20,3 +20,4 @@ build_step_19: 2023-08-02 11:49:11 +0530 - Add explosion particle burst on enemy
 build_step_20: 2023-08-02 12:36:29 +0530 - Implement coin drop and floating reward text
 build_step_21: 2023-08-02 13:27:27 +0530 - Add background music and audio channel management
 build_step_22: 2023-08-02 14:23:43 +0530 - Integrate laser shot sound effect
+build_step_23: 2023-08-02 15:13:07 +0530 - Integrate explosion and death sound effects
