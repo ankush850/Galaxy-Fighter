@@ -38,3 +38,4 @@ build_step_37: 2023-08-03 13:31:27 +0530 - Implement responsive canvas auto-scal
 build_step_38: 2023-08-03 14:21:47 +0530 - Add on-screen virtual gamepad controls for touch devices
 build_step_39: 2023-08-03 15:13:49 +0530 - Implement full keyboard support for WASD and Arrow keys
 build_step_40: 2023-08-03 16:01:43 +0530 - Add aircraft selector with multiple plane models
+build_step_41: 2023-08-03 16:53:39 +0530 - Implement local storage high score tracking
