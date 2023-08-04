@@ -51,3 +51,4 @@ build_step_50: 2023-08-04 10:54:18 +0530 - Code cleanup, comment formatting, and
 build_step_51: 2023-08-04 11:49:18 +0530 - Initial repository setup for Galaxy Fighter (iteration 2)
 build_step_52: 2023-08-04 12:42:30 +0530 - Configure project build settings and orientation (iteration 2)
 build_step_53: 2023-08-04 13:33:14 +0530 - Add display configuration and letterbox scaling (iteration 2)
+build_step_54: 2023-08-04 14:22:13 +0530 - Setup scene manager using composer module (iteration 2)
