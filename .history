@@ -76,3 +76,4 @@ build_step_75: 2023-08-05 18:38:12 +0530 - Create Mothership Boss entity and spr
 build_step_76: 2023-08-05 19:29:32 +0530 - Implement Boss health bar at top of viewport (iteration 2)
 build_step_77: 2023-08-05 20:18:34 +0530 - Add Boss dynamic movement and hovering AI (iteration 2)
 build_step_78: 2023-08-05 21:07:51 +0530 - Implement Boss fireball projectile attacks (iteration 2)
+build_step_79: 2023-08-05 22:02:37 +0530 - Add collision handling for Boss projectiles vs player (iteration 2)
