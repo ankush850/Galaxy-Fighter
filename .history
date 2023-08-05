@@ -73,3 +73,4 @@ build_step_72: 2023-08-05 16:01:48 +0530 - Integrate laser shot sound effect (it
 build_step_73: 2023-08-05 16:59:53 +0530 - Integrate explosion and death sound effects (iteration 2)
 build_step_74: 2023-08-05 17:46:54 +0530 - Integrate menu click and scene transition sounds (iteration 2)
 build_step_75: 2023-08-05 18:38:12 +0530 - Create Mothership Boss entity and sprite (iteration 2)
+build_step_76: 2023-08-05 19:29:32 +0530 - Implement Boss health bar at top of viewport (iteration 2)
