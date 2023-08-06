@@ -80,3 +80,4 @@ build_step_79: 2023-08-05 22:02:37 +0530 - Add collision handling for Boss proje
 build_step_80: 2023-08-05 22:51:37 +0530 - Create Boss damage smoke and spark effects (iteration 2)
 build_step_81: 2023-08-06 10:03:45 +0530 - Implement Boss multi-stage death explosion sequence (iteration 2)
 build_step_82: 2023-08-06 10:57:45 +0530 - Create Victory and Game Over overlay screens (iteration 2)
+build_step_83: 2023-08-06 11:52:43 +0530 - Add scene cleanup and event listener deregistration (iteration 2)
