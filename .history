@@ -139,3 +139,4 @@ build_step_138: 2023-08-09 17:50:05 +0530 - Add on-screen virtual gamepad contro
 build_step_139: 2023-08-09 18:34:53 +0530 - Implement full keyboard support for WASD and Arrow keys (iteration 3)
 build_step_140: 2023-08-09 19:28:15 +0530 - Add aircraft selector with multiple plane models (iteration 3)
 build_step_141: 2023-08-09 20:22:36 +0530 - Implement local storage high score tracking (iteration 3)
+build_step_142: 2023-08-09 21:14:18 +0530 - Add pause and resume overlay with modal backdrop (iteration 3)
