@@ -167,3 +167,4 @@ build_step_166: 2023-08-11 14:19:31 +0530 - Add enemy sine wave hovering animati
 build_step_167: 2023-08-11 15:17:25 +0530 - Implement collision detection between torpedo and enemies (iteration 4)
 build_step_168: 2023-08-11 16:04:18 +0530 - Add hit flashing visual effect on enemy damage (iteration 4)
 build_step_169: 2023-08-11 16:56:20 +0530 - Add explosion particle burst on enemy destruction (iteration 4)
+build_step_170: 2023-08-11 17:46:30 +0530 - Implement coin drop and floating reward text (iteration 4)
