@@ -160,3 +160,4 @@ build_step_159: 2023-08-10 21:59:16 +0530 - Setup aircraft vertical movement bou
 build_step_160: 2023-08-10 22:50:43 +0530 - Implement touch input handlers for up/down buttons (iteration 4)
 build_step_161: 2023-08-11 10:03:48 +0530 - Add torpedo shooting mechanics and speed transition (iteration 4)
 build_step_162: 2023-08-11 10:56:30 +0530 - Implement ammo clip counter and bullet limit (iteration 4)
+build_step_163: 2023-08-11 11:45:41 +0530 - Add reload mechanism and keybinding listeners (iteration 4)
