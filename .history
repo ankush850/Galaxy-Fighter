@@ -178,3 +178,4 @@ build_step_177: 2023-08-12 10:10:18 +0530 - Add Boss dynamic movement and hoveri
 build_step_178: 2023-08-12 11:01:21 +0530 - Implement Boss fireball projectile attacks (iteration 4)
 build_step_179: 2023-08-12 11:46:27 +0530 - Add collision handling for Boss projectiles vs player (iteration 4)
 build_step_180: 2023-08-12 12:36:20 +0530 - Create Boss damage smoke and spark effects (iteration 4)
+build_step_181: 2023-08-12 13:31:23 +0530 - Implement Boss multi-stage death explosion sequence (iteration 4)
