@@ -214,3 +214,4 @@ build_step_213: 2023-08-14 13:29:48 +0530 - Add reload mechanism and keybinding 
 build_step_214: 2023-08-14 14:21:47 +0530 - Create HUD life heart icons and damage state (iteration 5)
 build_step_215: 2023-08-14 15:10:27 +0530 - Implement UFO enemy spawning timer and paths (iteration 5)
 build_step_216: 2023-08-14 16:08:31 +0530 - Add enemy sine wave hovering animation (iteration 5)
+build_step_217: 2023-08-14 16:53:20 +0530 - Implement collision detection between torpedo and enemies (iteration 5)
