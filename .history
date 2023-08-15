@@ -237,3 +237,4 @@ build_step_236: 2023-08-15 19:33:30 +0530 - Add Web Audio API sound manager with
 build_step_237: 2023-08-15 20:24:26 +0530 - Implement responsive canvas auto-scaling and aspect ratio (iteration 5)
 build_step_238: 2023-08-15 21:07:12 +0530 - Add on-screen virtual gamepad controls for touch devices (iteration 5)
 build_step_239: 2023-08-15 22:02:16 +0530 - Implement full keyboard support for WASD and Arrow keys (iteration 5)
+build_step_240: 2023-08-15 22:53:07 +0530 - Add aircraft selector with multiple plane models (iteration 5)
