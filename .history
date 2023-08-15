@@ -224,3 +224,4 @@ build_step_223: 2023-08-14 22:01:22 +0530 - Integrate explosion and death sound 
 build_step_224: 2023-08-14 22:51:55 +0530 - Integrate menu click and scene transition sounds (iteration 5)
 build_step_225: 2023-08-15 10:03:29 +0530 - Create Mothership Boss entity and sprite (iteration 5)
 build_step_226: 2023-08-15 10:53:35 +0530 - Implement Boss health bar at top of viewport (iteration 5)
+build_step_227: 2023-08-15 11:47:17 +0530 - Add Boss dynamic movement and hovering AI (iteration 5)
