@@ -222,3 +222,4 @@ build_step_221: 2023-08-14 20:21:55 +0530 - Add background music and audio chann
 build_step_222: 2023-08-14 21:13:47 +0530 - Integrate laser shot sound effect (iteration 5)
 build_step_223: 2023-08-14 22:01:22 +0530 - Integrate explosion and death sound effects (iteration 5)
 build_step_224: 2023-08-14 22:51:55 +0530 - Integrate menu click and scene transition sounds (iteration 5)
+build_step_225: 2023-08-15 10:03:29 +0530 - Create Mothership Boss entity and sprite (iteration 5)
