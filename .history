@@ -256,3 +256,4 @@ build_step_255: 2023-08-16 22:02:37 +0530 - Create start scene layout and touch 
 build_step_256: 2023-08-16 22:53:47 +0530 - Add mountain background parallax layer (iteration 6)
 build_step_257: 2023-08-17 10:08:25 +0530 - Implement player aircraft sprite rendering (iteration 6)
 build_step_258: 2023-08-17 10:59:49 +0530 - Add static and dynamic physics bodies for player (iteration 6)
+build_step_259: 2023-08-17 11:48:40 +0530 - Setup aircraft vertical movement boundaries (iteration 6)
