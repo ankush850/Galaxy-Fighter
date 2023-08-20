@@ -307,3 +307,4 @@ build_step_306: 2023-08-20 11:01:36 +0530 - Add mountain background parallax lay
 build_step_307: 2023-08-20 11:47:22 +0530 - Implement player aircraft sprite rendering (iteration 7)
 build_step_308: 2023-08-20 12:42:09 +0530 - Add static and dynamic physics bodies for player (iteration 7)
 build_step_309: 2023-08-20 13:30:20 +0530 - Setup aircraft vertical movement boundaries (iteration 7)
+build_step_310: 2023-08-20 14:22:26 +0530 - Implement touch input handlers for up/down buttons (iteration 7)
