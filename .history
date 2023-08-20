@@ -309,3 +309,4 @@ build_step_308: 2023-08-20 12:42:09 +0530 - Add static and dynamic physics bodie
 build_step_309: 2023-08-20 13:30:20 +0530 - Setup aircraft vertical movement boundaries (iteration 7)
 build_step_310: 2023-08-20 14:22:26 +0530 - Implement touch input handlers for up/down buttons (iteration 7)
 build_step_311: 2023-08-20 15:14:39 +0530 - Add torpedo shooting mechanics and speed transition (iteration 7)
+build_step_312: 2023-08-20 16:01:13 +0530 - Implement ammo clip counter and bullet limit (iteration 7)
