@@ -365,3 +365,4 @@ build_step_364: 2023-08-23 19:26:42 +0530 - Create HUD life heart icons and dama
 build_step_365: 2023-08-23 20:16:24 +0530 - Implement UFO enemy spawning timer and paths (iteration 8)
 build_step_366: 2023-08-23 21:13:30 +0530 - Add enemy sine wave hovering animation (iteration 8)
 build_step_367: 2023-08-23 22:01:09 +0530 - Implement collision detection between torpedo and enemies (iteration 8)
+build_step_368: 2023-08-23 22:52:11 +0530 - Add hit flashing visual effect on enemy damage (iteration 8)
