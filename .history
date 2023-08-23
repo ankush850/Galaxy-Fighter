@@ -358,3 +358,4 @@ build_step_357: 2023-08-23 13:28:35 +0530 - Implement player aircraft sprite ren
 build_step_358: 2023-08-23 14:19:41 +0530 - Add static and dynamic physics bodies for player (iteration 8)
 build_step_359: 2023-08-23 15:12:34 +0530 - Setup aircraft vertical movement boundaries (iteration 8)
 build_step_360: 2023-08-23 16:04:54 +0530 - Implement touch input handlers for up/down buttons (iteration 8)
+build_step_361: 2023-08-23 16:56:15 +0530 - Add torpedo shooting mechanics and speed transition (iteration 8)
