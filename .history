@@ -416,3 +416,4 @@ build_step_415: 2023-08-26 22:03:49 +0530 - Implement UFO enemy spawning timer a
 build_step_416: 2023-08-26 22:56:22 +0530 - Add enemy sine wave hovering animation (iteration 9)
 build_step_417: 2023-08-27 10:06:21 +0530 - Implement collision detection between torpedo and enemies (iteration 9)
 build_step_418: 2023-08-27 10:56:12 +0530 - Add hit flashing visual effect on enemy damage (iteration 9)
+build_step_419: 2023-08-27 11:47:25 +0530 - Add explosion particle burst on enemy destruction (iteration 9)
