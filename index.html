@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Galaxy Fighter - Retro Arcade Combat</title>
-  <meta name="description" content="Experience thrilling retro aerial combat! Dodge UFOs, reload missiles, defeat alien bosses, and set high scores in Galaxy Fighter.">
+  <meta name="description" content="Experience thrilling retro aerial combat! Dodge UFOs, reload missiles, collect powerups, defeat alien bosses, and clear sectors in Galaxy Fighter.">
   <link rel="icon" type="image/png" href="recursos/imagens/planes/plane_1/plane_1_red.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -21,6 +21,10 @@
         <h1 class="logo-title">GALAXY FIGHTER</h1>
       </div>
       <div class="top-actions">
+        <button id="btnRules" class="btn-icon" aria-label="Game Rules & Powerups" title="Mission Rules">
+          <span>📜</span>
+          <span>Rules</span>
+        </button>
         <button id="btnSoundToggle" class="btn-icon" aria-label="Toggle Sound" title="Toggle Sound">
           <span id="soundIcon">🔊</span>
           <span id="soundText">Sound ON</span>
@@ -42,7 +46,7 @@
       <!-- Start Screen Overlay -->
       <section id="startOverlay" class="screen-overlay">
         <h2 class="title-glow">GALAXY FIGHTER</h2>
-        <p class="title-sub">Defeat alien UFOs, dodge incoming fire, and conquer the mothership!</p>
+        <p class="title-sub">Defeat alien UFOs, manage your magazine, collect powerups, and destroy the mothership!</p>
 
         <!-- Aircraft Selection -->
         <div class="aircraft-picker">
@@ -71,16 +75,64 @@
           </div>
         </div>
 
-        <button id="btnStartGame" class="btn-primary">
+        <!-- Difficulty Picker -->
+        <div class="difficulty-picker">
+          <span class="picker-label">Campaign Difficulty</span>
+          <div class="diff-buttons">
+            <button class="diff-btn active" data-diff="normal">Normal</button>
+            <button class="diff-btn" data-diff="hard">Veteran (Hard)</button>
+            <button class="diff-btn" data-diff="insane">Insane 🔥</button>
+          </div>
+        </div>
+
+        <button id="btnStartGame" class="btn-primary" type="button">
           <span>🚀 LAUNCH MISSION</span>
         </button>
+      </section>
+
+      <!-- Game Rules & Mission Briefing Overlay -->
+      <section id="rulesOverlay" class="screen-overlay hidden">
+        <div class="result-card rules-card">
+          <h2 class="title-glow" style="font-size: 1.5rem;">MISSION RULES & ARSENAL</h2>
+          <div class="rules-content">
+            <div class="rule-section">
+              <h4>🎯 Mission Sectors</h4>
+              <p>• <strong>Sector 1</strong>: Patrol Outpost (10 UFOs)</p>
+              <p>• <strong>Sector 2</strong>: Asteroid Field & Fleet (15 UFOs + Asteroids)</p>
+              <p>• <strong>Sector 3</strong>: Armada Infiltration (20 Heavy UFOs)</p>
+              <p>• <strong>Sector 4</strong>: Alien Mothership Boss (Multi-Phase Dreadnought)</p>
+            </div>
+            <div class="rule-section">
+              <h4>🔫 Magazine & Tactical Reload</h4>
+              <p>• Clip holds <strong>6 Missiles</strong>. No auto-reload when dry!</p>
+              <p>• Press <kbd>R</kbd> or <kbd>○</kbd> to reload when empty.</p>
+              <p>• Quick kill streaks build <strong>Combo Multipliers (up to x5)</strong>!</p>
+            </div>
+            <div class="rule-section">
+              <h4>⭐ Collectible Power-ups</h4>
+              <p>🛡️ <strong>Shield Orb</strong>: 8s invulnerability barrier.</p>
+              <p>⚡ <strong>Spread Shot</strong>: Fires 3 torpedoes simultaneously!</p>
+              <p>❤️ <strong>Repair Core</strong>: Restores +1 Life.</p>
+              <p>📦 <strong>Ammo Supply</strong>: Instant full reload + rapid fire.</p>
+              <p>💣 <strong>Nuke Bomb</strong>: Clears all enemies on screen.</p>
+            </div>
+          </div>
+          <button id="btnCloseRules" class="btn-primary" type="button" style="margin-top: 10px;">
+            <span>GOT IT, PILOT!</span>
+          </button>
+        </div>
       </section>
 
       <!-- Game Over / Victory Overlay -->
       <section id="resultOverlay" class="screen-overlay hidden">
         <div class="result-card">
           <h2 id="resultTitle" class="title-glow">MISSION OVER</h2>
+          <p id="resultSub" class="title-sub"></p>
           <div class="stat-grid">
+            <div class="stat-box">
+              <span class="stat-val" id="statSector">Sector 1</span>
+              <span class="stat-lbl">Reached Sector</span>
+            </div>
             <div class="stat-box">
               <span class="stat-val" id="statCoins">0</span>
               <span class="stat-lbl">Coins Collected</span>
@@ -93,12 +145,12 @@
               <span class="stat-val" id="statScore">0</span>
               <span class="stat-lbl">Final Score</span>
             </div>
-            <div class="stat-box">
+            <div class="stat-box" style="grid-column: span 2;">
               <span class="stat-val" id="statHighScore">0</span>
-              <span class="stat-lbl">Best Score</span>
+              <span class="stat-lbl">All-Time High Score</span>
             </div>
           </div>
-          <button id="btnRestart" class="btn-primary">
+          <button id="btnRestart" class="btn-primary" type="button">
             <span>🔄 PLAY AGAIN</span>
           </button>
         </div>
@@ -109,9 +161,9 @@
         <div class="result-card">
           <h2 class="title-glow">PAUSED</h2>
           <p class="title-sub">Mission paused. Take a breath, pilot!</p>
-          <div style="display: flex; gap: 14px;">
-            <button id="btnResume" class="btn-primary"><span>▶ RESUME</span></button>
-            <button id="btnQuit" class="btn-icon" style="padding: 14px 20px;"><span>🏠 MENU</span></button>
+          <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+            <button id="btnResume" class="btn-primary" type="button"><span>▶ RESUME</span></button>
+            <button id="btnQuit" class="btn-icon" type="button" style="padding: 14px 20px;"><span>🏠 MENU</span></button>
           </div>
         </div>
       </section>
@@ -120,20 +172,20 @@
       <div id="touchControls" class="touch-controls">
         <!-- Left: Up & Down movement arrows -->
         <div class="touch-cluster-left">
-          <button id="touchUp" class="touch-btn" aria-label="Fly Up">
+          <button id="touchUp" class="touch-btn" aria-label="Fly Up" type="button">
             <img src="recursos/imagens/UI/botao_cima.png" alt="Up">
           </button>
-          <button id="touchDown" class="touch-btn rotate-down" aria-label="Fly Down">
+          <button id="touchDown" class="touch-btn rotate-down" aria-label="Fly Down" type="button">
             <img src="recursos/imagens/UI/botao_cima.png" alt="Down">
           </button>
         </div>
 
         <!-- Right: Shoot & Reload action buttons -->
         <div class="touch-cluster-right">
-          <button id="touchReload" class="touch-btn btn-action-reload" aria-label="Reload Missile">
+          <button id="touchReload" class="touch-btn btn-action-reload" aria-label="Reload Magazine" type="button">
             <img src="recursos/imagens/UI/Button - PS Circle 2.png" alt="Reload">
           </button>
-          <button id="touchShoot" class="touch-btn btn-action-shoot" aria-label="Fire Missile">
+          <button id="touchShoot" class="touch-btn btn-action-shoot" aria-label="Fire Missile" type="button">
             <img src="recursos/imagens/UI/Button - PS Cross 2.png" alt="Fire">
           </button>
         </div>
@@ -152,7 +204,7 @@
       </div>
       <div class="ctrl-group">
         <span class="key-badge">R</span> or <span class="key-badge">K</span>
-        <span>Reload Ammo (Max 3)</span>
+        <span>Manual Reload (6/Mag)</span>
       </div>
       <div class="ctrl-group">
         <span class="key-badge">P</span>
