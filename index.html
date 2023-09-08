@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Galaxy Fighter - Retro Arcade Combat</title>
-  <meta name="description" content="Experience thrilling retro aerial combat! Dodge UFOs, reload missiles, collect powerups, defeat alien bosses, and clear sectors in Galaxy Fighter.">
+  <meta name="description" content="Production-ready retro aerial combat! Dodge UFOs, ride hoverboards, activate rocket boosts, reload missiles, and defeat alien motherships in Galaxy Fighter.">
   <link rel="icon" type="image/png" href="recursos/imagens/planes/plane_1/plane_1_red.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -21,19 +21,19 @@
         <h1 class="logo-title">GALAXY FIGHTER</h1>
       </div>
       <div class="top-actions">
-        <button id="btnRules" class="btn-icon" aria-label="Game Rules & Powerups" title="Mission Rules">
+        <button id="btnRules" class="btn-icon" aria-label="Game Rules & Powerups" title="Mission Rules" type="button">
           <span>📜</span>
           <span>Rules</span>
         </button>
-        <button id="btnSoundToggle" class="btn-icon" aria-label="Toggle Sound" title="Toggle Sound">
+        <button id="btnSoundToggle" class="btn-icon" aria-label="Toggle Sound" title="Toggle Sound" type="button">
           <span id="soundIcon">🔊</span>
           <span id="soundText">Sound ON</span>
         </button>
-        <button id="btnPause" class="btn-icon" aria-label="Pause Game" title="Pause Game">
+        <button id="btnPause" class="btn-icon" aria-label="Pause Game" title="Pause Game" type="button">
           <span>⏸️</span>
           <span>Pause</span>
         </button>
-        <button id="btnFullscreen" class="btn-icon" aria-label="Toggle Fullscreen" title="Toggle Fullscreen">
+        <button id="btnFullscreen" class="btn-icon" aria-label="Toggle Fullscreen" title="Toggle Fullscreen" type="button">
           <span>⛶</span>
         </button>
       </div>
@@ -46,7 +46,7 @@
       <!-- Start Screen Overlay -->
       <section id="startOverlay" class="screen-overlay">
         <h2 class="title-glow">GALAXY FIGHTER</h2>
-        <p class="title-sub">Defeat alien UFOs, manage your magazine, collect powerups, and destroy the mothership!</p>
+        <p class="title-sub">Defeat alien UFOs, ride hoverboards, trigger rocket boosts, and destroy the mothership!</p>
 
         <!-- Aircraft Selection -->
         <div class="aircraft-picker">
@@ -75,13 +75,24 @@
           </div>
         </div>
 
+        <!-- Map / Environment Selection -->
+        <div class="difficulty-picker">
+          <span class="picker-label">Starting Sector Map</span>
+          <div class="map-buttons">
+            <button class="map-btn active" data-map="0" type="button">🌍 Earth Stratosphere</button>
+            <button class="map-btn" data-map="1" type="button">🌌 Solar Nebula</button>
+            <button class="map-btn" data-map="2" type="button">⚡ Cyber Void</button>
+            <button class="map-btn" data-map="3" type="button">👾 Alien Mothership</button>
+          </div>
+        </div>
+
         <!-- Difficulty Picker -->
         <div class="difficulty-picker">
-          <span class="picker-label">Campaign Difficulty</span>
+          <span class="picker-label">Combat Difficulty</span>
           <div class="diff-buttons">
-            <button class="diff-btn active" data-diff="normal">Normal</button>
-            <button class="diff-btn" data-diff="hard">Veteran (Hard)</button>
-            <button class="diff-btn" data-diff="insane">Insane 🔥</button>
+            <button class="diff-btn active" data-diff="normal" type="button">Normal</button>
+            <button class="diff-btn" data-diff="hard" type="button">Veteran</button>
+            <button class="diff-btn" data-diff="insane" type="button">Insane 🔥</button>
           </div>
         </div>
 
@@ -93,28 +104,29 @@
       <!-- Game Rules & Mission Briefing Overlay -->
       <section id="rulesOverlay" class="screen-overlay hidden">
         <div class="result-card rules-card">
-          <h2 class="title-glow" style="font-size: 1.5rem;">MISSION RULES & ARSENAL</h2>
+          <h2 class="title-glow" style="font-size: 1.4rem;">MISSION RULES & SPECIAL POWER-UPS</h2>
           <div class="rules-content">
             <div class="rule-section">
-              <h4>🎯 Mission Sectors</h4>
-              <p>• <strong>Sector 1</strong>: Patrol Outpost (10 UFOs)</p>
-              <p>• <strong>Sector 2</strong>: Asteroid Field & Fleet (15 UFOs + Asteroids)</p>
-              <p>• <strong>Sector 3</strong>: Armada Infiltration (20 Heavy UFOs)</p>
-              <p>• <strong>Sector 4</strong>: Alien Mothership Boss (Multi-Phase Dreadnought)</p>
+              <h4>🚀 Subway Surfers-Style Arcade Power-Ups</h4>
+              <p>🚀 <strong>Hyper Rocket Boost</strong>: 6s invincible jetpack flight! Rams through all enemies with hyper speed and auto-collects coins!</p>
+              <p>🛹 <strong>Cosmic Hoverboard</strong>: Spawns a neon hoverboard shield. Takes 1 fatal crash hit for you without losing any life!</p>
+              <p>🧲 <strong>Super Coin Magnet</strong>: Gravitational pulse pulls every coin on screen directly to your aircraft for 12 seconds!</p>
+              <p>⚡ <strong>Triple Spread Cannon</strong>: 10s triple plasma torpedo storm covering all lanes!</p>
+              <p>💨 <strong>Quantum Warp Dash</strong>: Press <kbd>Shift</kbd> or tap Dash button to perform an instant invincible warp dodge!</p>
+              <p>💣 <strong>Tactical EMP Nuke</strong>: Clears all active UFOs and bullets on screen.</p>
+              <p>❤️ <strong>Repair Core</strong>: Restores +1 Life Heart.</p>
             </div>
             <div class="rule-section">
-              <h4>🔫 Magazine & Tactical Reload</h4>
-              <p>• Clip holds <strong>6 Missiles</strong>. No auto-reload when dry!</p>
-              <p>• Press <kbd>R</kbd> or <kbd>○</kbd> to reload when empty.</p>
-              <p>• Quick kill streaks build <strong>Combo Multipliers (up to x5)</strong>!</p>
+              <h4>🎯 Weapons & Magazine</h4>
+              <p>• <strong>6-Missiles Magazine</strong>: Auto-reloads when empty or press <kbd>R</kbd>/<kbd>○</kbd> anytime.</p>
+              <p>• <strong>Combo Multiplier</strong>: Rapid kills build score streaks up to <strong>5x Multiplier</strong>!</p>
             </div>
             <div class="rule-section">
-              <h4>⭐ Collectible Power-ups</h4>
-              <p>🛡️ <strong>Shield Orb</strong>: 8s invulnerability barrier.</p>
-              <p>⚡ <strong>Spread Shot</strong>: Fires 3 torpedoes simultaneously!</p>
-              <p>❤️ <strong>Repair Core</strong>: Restores +1 Life.</p>
-              <p>📦 <strong>Ammo Supply</strong>: Instant full reload + rapid fire.</p>
-              <p>💣 <strong>Nuke Bomb</strong>: Clears all enemies on screen.</p>
+              <h4>🗺️ Sector Maps</h4>
+              <p>• <strong>Sector 1</strong>: Earth Stratosphere (10 UFOs)</p>
+              <p>• <strong>Sector 2</strong>: Asteroid Nebula (15 UFOs + Asteroid Hazards)</p>
+              <p>• <strong>Sector 3</strong>: Cyber Void Armada (20 Heavy Armored UFOs)</p>
+              <p>• <strong>Sector 4</strong>: Alien Mothership Boss (3 Phase Dreadnought)</p>
             </div>
           </div>
           <button id="btnCloseRules" class="btn-primary" type="button" style="margin-top: 10px;">
@@ -168,12 +180,15 @@
         </div>
       </section>
 
-      <!-- On-Screen Virtual Gamepad (For touch & mobile devices) -->
+      <!-- On-Screen Virtual Gamepad -->
       <div id="touchControls" class="touch-controls">
-        <!-- Left: Up & Down movement arrows -->
+        <!-- Left: Up, Down & Dash movement buttons -->
         <div class="touch-cluster-left">
           <button id="touchUp" class="touch-btn" aria-label="Fly Up" type="button">
             <img src="recursos/imagens/UI/botao_cima.png" alt="Up">
+          </button>
+          <button id="touchDash" class="touch-btn btn-action-dash" aria-label="Quantum Dash" type="button" title="Warp Dash">
+            <span style="font-size: 1.2rem;">💨</span>
           </button>
           <button id="touchDown" class="touch-btn rotate-down" aria-label="Fly Down" type="button">
             <img src="recursos/imagens/UI/botao_cima.png" alt="Down">
@@ -196,15 +211,19 @@
     <footer class="controls-bar">
       <div class="ctrl-group">
         <span class="key-badge">W</span> <span class="key-badge">S</span> or <span class="key-badge">▲</span> <span class="key-badge">▼</span>
-        <span>Fly Up / Down</span>
+        <span>Fly</span>
+      </div>
+      <div class="ctrl-group">
+        <span class="key-badge">SHIFT</span>
+        <span>Quantum Dash</span>
       </div>
       <div class="ctrl-group">
         <span class="key-badge">SPACE</span> or <span class="key-badge">J</span>
-        <span>Fire Missile</span>
+        <span>Shoot</span>
       </div>
       <div class="ctrl-group">
         <span class="key-badge">R</span> or <span class="key-badge">K</span>
-        <span>Manual Reload (6/Mag)</span>
+        <span>Reload (6/Mag)</span>
       </div>
       <div class="ctrl-group">
         <span class="key-badge">P</span>

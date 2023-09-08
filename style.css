@@ -16,7 +16,7 @@
   --success: #22c55e;
   --purple: #a855f7;
   --bg-dark: #070a13;
-  --panel-bg: rgba(15, 23, 42, 0.88);
+  --panel-bg: rgba(15, 23, 42, 0.9);
   --panel-border: rgba(255, 255, 255, 0.12);
   --font-game: 'GameFont', 'Press Start 2P', 'Space Grotesk', cursive, sans-serif;
   --font-ui: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -74,7 +74,7 @@ body {
   width: 100%;
   max-width: 1200px;
   max-height: 100vh;
-  padding: 10px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,7 +123,7 @@ body {
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn-icon {
@@ -174,7 +174,7 @@ body {
   image-rendering: crisp-edges;
 }
 
-/* UI Overlays inside Canvas */
+/* UI Overlays */
 .screen-overlay {
   position: absolute;
   inset: 0;
@@ -182,12 +182,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(7, 10, 19, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(7, 10, 19, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 20;
   transition: opacity 0.3s ease;
-  padding: 20px;
+  padding: 16px;
   text-align: center;
 }
 
@@ -198,12 +198,12 @@ body {
 
 .title-glow {
   font-family: var(--font-game);
-  font-size: clamp(1.4rem, 3.6vw, 2.6rem);
+  font-size: clamp(1.4rem, 3.5vw, 2.5rem);
   background: linear-gradient(180deg, #ffffff 0%, #fcd34d 50%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 15px rgba(245, 158, 11, 0.6));
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   animation: pulseTitle 2.5s ease-in-out infinite alternate;
 }
 
@@ -213,24 +213,24 @@ body {
 }
 
 .title-sub {
-  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  font-size: clamp(0.75rem, 1.6vw, 0.95rem);
   color: #94a3b8;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-weight: 500;
-  max-width: 600px;
+  max-width: 620px;
 }
 
 /* Aircraft Selector */
 .aircraft-picker {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .picker-label {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: #64748b;
@@ -239,7 +239,7 @@ body {
 
 .aircraft-list {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -249,24 +249,24 @@ body {
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid transparent;
   border-radius: 10px;
-  padding: 6px 10px;
+  padding: 5px 8px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
 
 .plane-card img {
-  width: 48px;
-  height: 36px;
+  width: 44px;
+  height: 32px;
   object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
 }
 
 .plane-card span {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   color: #cbd5e1;
 }
@@ -279,21 +279,54 @@ body {
 .plane-card.active {
   border-color: #38bdf8;
   background: rgba(56, 189, 248, 0.15);
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.35);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+
+/* Map Selector Buttons */
+.map-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.map-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.map-btn:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.map-btn.active {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
 }
 
 /* Difficulty Selector */
 .difficulty-picker {
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .diff-buttons {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .diff-btn {
@@ -301,8 +334,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #94a3b8;
   border-radius: 8px;
-  padding: 5px 14px;
-  font-size: 0.8rem;
+  padding: 4px 12px;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -324,18 +357,18 @@ body {
 /* Main CTA Button */
 .btn-primary {
   font-family: var(--font-game);
-  font-size: clamp(0.85rem, 2vw, 1.1rem);
+  font-size: clamp(0.8rem, 1.8vw, 1.05rem);
   color: #0f172a;
   background: linear-gradient(135deg, #facc15 0%, #f97316 100%);
   border: none;
-  padding: 12px 32px;
+  padding: 10px 28px;
   border-radius: 12px;
   cursor: pointer;
   box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4), 0 0 12px rgba(250, 204, 21, 0.3);
   transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   text-transform: uppercase;
   outline: none;
 }
@@ -353,35 +386,35 @@ body {
 .rules-card {
   max-width: 620px;
   text-align: left;
-  max-height: 80vh;
+  max-height: 82vh;
   overflow-y: auto;
 }
 
 .rules-content {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  font-size: 0.85rem;
-  line-height: 1.45;
+  gap: 12px;
+  font-size: 0.82rem;
+  line-height: 1.4;
   color: #cbd5e1;
 }
 
 .rule-section h4 {
   color: #38bdf8;
   margin-bottom: 4px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .rule-section kbd {
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 1px 6px;
+  padding: 1px 5px;
   border-radius: 4px;
   font-family: var(--font-game);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 
-/* Controls Hint / Guide Bar */
+/* Controls Hint Bar */
 .controls-bar {
   width: 100%;
   max-width: 960px;
@@ -390,20 +423,20 @@ body {
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--panel-border);
   border-radius: 0 0 14px 14px;
-  padding: 10px 18px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 0.78rem;
   color: #94a3b8;
 }
 
 .ctrl-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .key-badge {
@@ -412,13 +445,13 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-bottom-width: 3px;
   border-radius: 6px;
-  padding: 2px 6px;
+  padding: 2px 5px;
   font-family: var(--font-game);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: #f8fafc;
 }
 
-/* Touch / Gamepad Controls */
+/* Touch Controls */
 .touch-controls {
   position: absolute;
   inset: 0;
@@ -427,25 +460,26 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 18px 22px;
+  padding: 14px 18px;
 }
 
 .touch-cluster-left,
 .touch-cluster-right {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   pointer-events: auto;
 }
 
 .touch-cluster-right {
   flex-direction: row;
   align-items: center;
+  gap: 10px;
 }
 
 .touch-btn {
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -462,8 +496,8 @@ body {
 }
 
 .touch-btn img {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   pointer-events: none;
 }
@@ -480,9 +514,15 @@ body {
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
 }
 
+.btn-action-dash {
+  width: 50px;
+  height: 50px;
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
 .btn-action-shoot {
-  width: 70px;
-  height: 70px;
+  width: 66px;
+  height: 66px;
   border-color: rgba(239, 68, 68, 0.4);
 }
 
@@ -494,8 +534,8 @@ body {
 }
 
 .btn-action-reload {
-  width: 62px;
-  height: 62px;
+  width: 58px;
+  height: 58px;
   border-color: rgba(245, 158, 11, 0.4);
 }
 
@@ -508,23 +548,23 @@ body {
 
 /* Stats Card */
 .result-card {
-  background: rgba(15, 23, 42, 0.92);
+  background: rgba(15, 23, 42, 0.94);
   border: 1px solid var(--panel-border);
   border-radius: 16px;
-  padding: 22px 28px;
+  padding: 20px 24px;
   max-width: 460px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   box-shadow: 0 15px 40px rgba(0,0,0,0.7);
 }
 
 .stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
 }
 
@@ -540,12 +580,12 @@ body {
 
 .stat-val {
   font-family: var(--font-game);
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #fbbf24;
 }
 
 .stat-lbl {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -559,7 +599,7 @@ body {
     display: none;
   }
   .plane-card img {
-    width: 40px;
-    height: 30px;
+    width: 36px;
+    height: 26px;
   }
 }
