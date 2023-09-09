@@ -508,3 +508,4 @@ production_step_13: 2023-09-08 20:18:39 +0530 - Add Cyber Void dark red giant st
 production_step_14: 2023-09-08 21:05:17 +0530 - Implement Alien Mothership Core atmospheric lightning storm
 production_step_15: 2023-09-08 21:57:55 +0530 - Create Game Design Document in docs/GAME_DESIGN.md
 production_step_16: 2023-09-08 22:47:20 +0530 - Create System Architecture Document in docs/ARCHITECTURE.md
+production_step_17: 2023-09-09 10:03:55 +0530 - Create Power-Ups Guide in docs/POWERUPS_GUIDE.md
