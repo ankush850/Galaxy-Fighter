@@ -532,3 +532,4 @@ production_step_37: 2023-09-10 13:24:41 +0530 - Enhance HUD with active power-up
 production_step_38: 2023-09-10 14:20:14 +0530 - Add multi-phase Alien Mothership Boss enrage mechanics
 production_step_39: 2023-09-10 15:05:32 +0530 - Add Boss 5-way spread fireball barrage in final phase
 production_step_40: 2023-09-10 15:57:22 +0530 - Add floating combat text for power-up activations and combos
+production_step_41: 2023-09-10 16:47:53 +0530 - Update project README with architecture badges and controls matrix
