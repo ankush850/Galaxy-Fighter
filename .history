@@ -524,3 +524,4 @@ production_step_29: 2023-09-09 20:15:52 +0530 - Implement Starting Sector Map se
 production_step_30: 2023-09-09 21:08:31 +0530 - Add difficulty options: Normal, Veteran, and Insane
 production_step_31: 2023-09-09 21:54:34 +0530 - Add Rules modal dialog with Subway Surfers power-up matrix
 production_step_32: 2023-09-09 22:46:39 +0530 - Optimize particle engine garbage collection and memory pooling
+production_step_33: 2023-09-10 09:58:27 +0530 - Fine-tune torpedo projectile velocity and collision bounding boxes
