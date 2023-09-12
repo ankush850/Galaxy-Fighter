@@ -568,3 +568,4 @@ production_step_73: 2023-09-12 16:47:22 +0530 - Implement Hyper Rocket invincibi
 production_step_74: 2023-09-12 17:39:21 +0530 - Add Hoverboard EMP shockwave detonation on crash (phase 2)
 production_step_75: 2023-09-12 18:32:18 +0530 - Add Coin Magnet pulse sound and visual ripple effect (phase 2)
 production_step_76: 2023-09-12 19:24:12 +0530 - Implement Starting Sector Map selector in start menu (phase 2)
+production_step_77: 2023-09-12 20:16:25 +0530 - Add difficulty options: Normal, Veteran, and Insane (phase 2)
