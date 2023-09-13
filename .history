@@ -573,3 +573,4 @@ production_step_78: 2023-09-12 21:04:11 +0530 - Add Rules modal dialog with Subw
 production_step_79: 2023-09-12 21:56:46 +0530 - Optimize particle engine garbage collection and memory pooling (phase 2)
 production_step_80: 2023-09-12 22:46:05 +0530 - Fine-tune torpedo projectile velocity and collision bounding boxes (phase 2)
 production_step_81: 2023-09-13 10:01:45 +0530 - Add kill streak combo multiplier up to 5x score bonus (phase 2)
+production_step_82: 2023-09-13 10:58:44 +0530 - Add responsive touch virtual gamepad with dedicated Dash button (phase 2)
