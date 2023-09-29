@@ -816,3 +816,4 @@ production_step_321: 2023-09-29 10:05:13 +0530 - Add Boss 5-way spread fireball 
 production_step_322: 2023-09-29 10:59:43 +0530 - Add floating combat text for power-up activations and combos (phase 7)
 production_step_323: 2023-09-29 11:55:30 +0530 - Update project README with architecture badges and controls matrix (phase 7)
 production_step_324: 2023-09-29 12:44:50 +0530 - Fine-tune asteroid split physics and rock rotation (phase 7)
+production_step_325: 2023-09-29 13:42:27 +0530 - Add auto-port fallback on EADDRINUSE in production server (phase 7)
