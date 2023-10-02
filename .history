@@ -860,3 +860,4 @@ production_step_365: 2023-10-01 22:48:42 +0530 - Implement strict keyboard focus
 production_step_366: 2023-10-02 10:01:50 +0530 - Enhance HUD with active power-up timers and badge indicators (phase 8)
 production_step_367: 2023-10-02 10:56:27 +0530 - Add multi-phase Alien Mothership Boss enrage mechanics (phase 8)
 production_step_368: 2023-10-02 11:55:44 +0530 - Add Boss 5-way spread fireball barrage in final phase (phase 8)
+production_step_369: 2023-10-02 12:44:16 +0530 - Add floating combat text for power-up activations and combos (phase 8)
