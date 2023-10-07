@@ -945,3 +945,4 @@ production_step_450: 2023-10-07 18:15:52 +0530 - Add Hoverboard EMP shockwave de
 production_step_451: 2023-10-07 19:07:38 +0530 - Add Coin Magnet pulse sound and visual ripple effect (phase 10)
 production_step_452: 2023-10-07 20:03:40 +0530 - Implement Starting Sector Map selector in start menu (phase 10)
 production_step_453: 2023-10-07 20:56:50 +0530 - Add difficulty options: Normal, Veteran, and Insane (phase 10)
+production_step_454: 2023-10-07 21:48:16 +0530 - Add Rules modal dialog with Subway Surfers power-up matrix (phase 10)
