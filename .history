@@ -948,3 +948,4 @@ production_step_453: 2023-10-07 20:56:50 +0530 - Add difficulty options: Normal,
 production_step_454: 2023-10-07 21:48:16 +0530 - Add Rules modal dialog with Subway Surfers power-up matrix (phase 10)
 production_step_455: 2023-10-07 22:42:47 +0530 - Optimize particle engine garbage collection and memory pooling (phase 10)
 production_step_456: 2023-10-08 10:04:16 +0530 - Fine-tune torpedo projectile velocity and collision bounding boxes (phase 10)
+production_step_457: 2023-10-08 10:56:49 +0530 - Add kill streak combo multiplier up to 5x score bonus (phase 10)
