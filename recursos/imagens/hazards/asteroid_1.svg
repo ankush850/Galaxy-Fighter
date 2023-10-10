@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <radialGradient id="rockShading" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#94a3b8"/>
+      <stop offset="50%" stop-color="#475569"/>
+      <stop offset="85%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </radialGradient>
+    <filter id="rockShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Asteroid 1 Silhouette -->
+  <polygon points="45,8 72,16 92,38 88,68 65,88 38,92 14,75 8,45 22,20" fill="url(#rockShading)" stroke="#334155" stroke-width="2.5" filter="url(#rockShadow)"/>
+
+  <!-- Craters -->
+  <!-- Crater 1 -->
+  <ellipse cx="40" cy="35" rx="12" ry="9" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <ellipse cx="38" cy="33" rx="8" ry="6" fill="#0f172a"/>
+  <ellipse cx="42" cy="37" rx="6" ry="4" fill="#334155"/>
+
+  <!-- Crater 2 -->
+  <ellipse cx="68" cy="55" rx="10" ry="8" fill="#1e293b" stroke="#64748b" stroke-width="1.5"/>
+  <ellipse cx="66" cy="53" rx="6" ry="5" fill="#0f172a"/>
+
+  <!-- Crater 3 -->
+  <ellipse cx="32" cy="65" rx="7" ry="5" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+
+  <!-- Ridges & Cracks -->
+  <path d="M 45 8 L 40 35 L 32 65 L 38 92" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 72 16 L 68 55 L 65 88" fill="none" stroke="#334155" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

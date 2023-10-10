@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <radialGradient id="rockIron" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#cbd5e1"/>
+      <stop offset="45%" stop-color="#64748b"/>
+      <stop offset="80%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Asteroid 2 Silhouette (Jagged Meteor) -->
+  <polygon points="50,6 80,18 95,48 78,82 52,94 22,86 6,56 18,22" fill="url(#rockIron)" stroke="#1e293b" stroke-width="2.5"/>
+
+  <!-- Crystal Veins with Cyan Glow -->
+  <path d="M 35 25 L 48 45 L 65 38 L 80 60 L 58 75" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="48" cy="45" r="3" fill="#ffffff"/>
+  <circle cx="80" cy="60" r="3" fill="#ffffff"/>
+
+  <!-- Craters -->
+  <ellipse cx="65" cy="25" rx="8" ry="6" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+  <ellipse cx="30" cy="60" rx="10" ry="7" fill="#0f172a" stroke="#475569" stroke-width="1.5"/>
+</svg>

@@ -2,7 +2,7 @@
  * Galaxy Fighter - Production Grade Arcade Engine
  * Implements Subway Surfers-style power-ups (Hyper Rocket Jetpack, Cosmic Hoverboard,
  * Super Coin Magnet, Quantum Dash), 4 Dynamic Sector Maps, 6-round auto-reloading magazine,
- * procedural Web Audio synthesis, and multi-phase Alien Mothership Boss.
+ * custom SVG & high-res PNG/JPG assets, Web Audio synthesis, and multi-phase Alien Mothership Boss.
  */
 
 (function () {
@@ -27,15 +27,37 @@
 
   // Image Asset URLs
   const IMAGE_URLS = {
-    bgMountain: 'recursos/imagens/BG/sky_background_mountains.png',
-    bgHills: 'recursos/imagens/BG/sky_background_green_hills.png',
+    // 4 Galactic Sector Background Maps
+    bgEarth: 'recursos/imagens/BG/sky_background_mountains.png',
+    bgNebula: 'recursos/imagens/BG/bg_solar_nebula.jpg',
+    bgCyber: 'recursos/imagens/BG/bg_cyber_void.jpg',
+    bgMothership: 'recursos/imagens/BG/bg_alien_mothership.jpg',
+
+    // Entities & Projectiles
     enemyOvni: 'recursos/imagens/planes/inimigos/ovni.png',
     boss: 'recursos/imagens/planes/inimigos/boss.png',
     torpedo: 'recursos/imagens/planes/tiros/torpedo_flame.png',
     bossFireball: 'recursos/imagens/planes/tiros/fire_ball_1.png',
+
+    // UI Icons
     iconLife: 'recursos/imagens/UI/life.png',
     iconAmmo: 'recursos/imagens/UI/municao.png',
     iconCoin: 'recursos/imagens/icones/gold_coin.png',
+
+    // Subway Surfers Power-up Sprites
+    powerupRocket: 'recursos/imagens/powerups/powerup_rocket.svg',
+    powerupHoverboard: 'recursos/imagens/powerups/powerup_hoverboard.svg',
+    powerupMagnet: 'recursos/imagens/powerups/powerup_magnet.svg',
+    powerupSpread: 'recursos/imagens/powerups/powerup_spread.svg',
+    powerupDash: 'recursos/imagens/powerups/powerup_dash.svg',
+    powerupNuke: 'recursos/imagens/powerups/powerup_nuke.svg',
+    powerupRepair: 'recursos/imagens/powerups/powerup_repair.svg',
+
+    // Space Hazards & Hoverboard Overlay
+    asteroid1: 'recursos/imagens/hazards/asteroid_1.svg',
+    asteroid2: 'recursos/imagens/hazards/asteroid_2.svg',
+    hoverboardBoard: 'recursos/imagens/planes/hoverboard_board.svg',
+
     ...PLANE_ASSETS
   };
 
@@ -50,10 +72,10 @@
 
   // Sector Maps Configuration
   const SECTOR_CONFIG = [
-    { id: 1, name: "EARTH STRATOSPHERE", targetKills: 10, bg: 'bgMountain', desc: "Neutralize 10 Scout UFOs", themeColor: '#38bdf8' },
-    { id: 2, name: "SOLAR NEBULA", targetKills: 15, bg: 'bgHills', desc: "Clear 15 UFOs & Asteroids", themeColor: '#a855f7' },
-    { id: 3, name: "CYBER VOID ARMADA", targetKills: 20, bg: 'bgMountain', desc: "Destroy 20 Heavy UFOs", themeColor: '#f97316' },
-    { id: 4, name: "MOTHERSHIP CORE", targetKills: 1, bg: 'bgHills', desc: "Defeat the Alien Dreadnought", themeColor: '#ef4444' }
+    { id: 1, name: "EARTH STRATOSPHERE", targetKills: 10, bg: 'bgEarth', desc: "Neutralize 10 Scout UFOs", themeColor: '#38bdf8' },
+    { id: 2, name: "SOLAR NEBULA", targetKills: 15, bg: 'bgNebula', desc: "Clear 15 UFOs & Asteroids", themeColor: '#a855f7' },
+    { id: 3, name: "CYBER VOID ARMADA", targetKills: 20, bg: 'bgCyber', desc: "Destroy 20 Heavy UFOs", themeColor: '#f97316' },
+    { id: 4, name: "MOTHERSHIP CORE", targetKills: 1, bg: 'bgMothership', desc: "Defeat the Alien Dreadnought", themeColor: '#ef4444' }
   ];
 
   // --- State Variables ---
@@ -92,7 +114,7 @@
 
   let selectedPlaneKey = 'plane_1_red';
   let selectedStartMap = 0;
-  let selectedDifficulty = 'normal'; // normal, hard, insane
+  let selectedDifficulty = 'normal';
 
   // --- Web Audio & Sound Engine ---
   const sounds = {};
@@ -139,7 +161,7 @@
     } catch (e) {}
   }
 
-  // Synthesized Sound Effects
+  // Synthesized Procedural Sound Effects
   function playSynthSound(type) {
     if (isMuted || !audioCtx) return;
     try {
@@ -535,18 +557,23 @@
       ctx.translate(this.x, this.y);
       ctx.rotate(this.tilt);
 
-      // Draw Cosmic Hoverboard underneath aircraft
+      // Draw Cosmic Hoverboard underneath aircraft using custom sprite
       if (this.hasHoverboard) {
         ctx.save();
-        ctx.fillStyle = '#a855f7';
-        ctx.strokeStyle = '#e879f9';
-        ctx.lineWidth = 3;
-        ctx.shadowColor = '#d946ef';
-        ctx.shadowBlur = 16;
-        ctx.beginPath();
-        ctx.roundRect(-this.width * 0.55, this.height * 0.45, this.width * 1.1, 14, 6);
-        ctx.fill();
-        ctx.stroke();
+        const hbImg = images.hoverboardBoard;
+        if (hbImg && hbImg.complete && hbImg.naturalWidth > 0) {
+          ctx.drawImage(hbImg, -this.width * 0.6, this.height * 0.35, this.width * 1.2, 32);
+        } else {
+          ctx.fillStyle = '#a855f7';
+          ctx.strokeStyle = '#e879f9';
+          ctx.lineWidth = 3;
+          ctx.shadowColor = '#d946ef';
+          ctx.shadowBlur = 16;
+          ctx.beginPath();
+          ctx.roundRect(-this.width * 0.55, this.height * 0.45, this.width * 1.1, 14, 6);
+          ctx.fill();
+          ctx.stroke();
+        }
         ctx.restore();
       }
 
@@ -576,7 +603,7 @@
       }
 
       const img = images[this.planeKey] || images.plane_1_red;
-      if (img && img.complete) {
+      if (img && img.complete && img.naturalWidth > 0) {
         ctx.drawImage(img, -this.width / 2, -this.height / 2, this.width, this.height);
       } else {
         ctx.fillStyle = '#ef4444';
@@ -805,7 +832,7 @@
   // --- Space Asteroid Hazard Class ---
   class Asteroid {
     constructor() {
-      this.radius = Math.random() * 22 + 18;
+      this.radius = Math.random() * 22 + 20;
       this.width = this.radius * 2;
       this.height = this.radius * 2;
       this.x = CANVAS_WIDTH + 60;
@@ -814,6 +841,7 @@
       this.rotation = 0;
       this.rotSpeed = (Math.random() - 0.5) * 0.05;
       this.hp = 3;
+      this.variant = Math.random() < 0.5 ? 'asteroid1' : 'asteroid2';
       this.markedForDeletion = false;
     }
 
@@ -843,21 +871,27 @@
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.rotation);
-      ctx.fillStyle = '#475569';
-      ctx.strokeStyle = '#94a3b8';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      for (let i = 0; i < 8; i++) {
-        const ang = (i / 8) * Math.PI * 2;
-        const rad = this.radius * (0.8 + (i % 2) * 0.35);
-        const px = Math.cos(ang) * rad;
-        const py = Math.sin(ang) * rad;
-        if (i === 0) ctx.moveTo(px, py);
-        else ctx.lineTo(px, py);
+
+      const astImg = images[this.variant];
+      if (astImg && astImg.complete && astImg.naturalWidth > 0) {
+        ctx.drawImage(astImg, -this.radius, -this.radius, this.radius * 2, this.radius * 2);
+      } else {
+        ctx.fillStyle = '#475569';
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        for (let i = 0; i < 8; i++) {
+          const ang = (i / 8) * Math.PI * 2;
+          const rad = this.radius * (0.8 + (i % 2) * 0.35);
+          const px = Math.cos(ang) * rad;
+          const py = Math.sin(ang) * rad;
+          if (i === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
       }
-      ctx.closePath();
-      ctx.fill();
-      ctx.stroke();
       ctx.restore();
     }
   }
@@ -868,9 +902,9 @@
       this.x = x;
       this.y = y;
       this.type = type; // 'rocket', 'hoverboard', 'magnet', 'spread', 'heal', 'ammo', 'nuke'
-      this.radius = 20;
-      this.width = 40;
-      this.height = 40;
+      this.radius = 24;
+      this.width = 48;
+      this.height = 48;
       this.speed = 1.8;
       this.bobOffset = Math.random() * Math.PI * 2;
       this.markedForDeletion = false;
@@ -940,30 +974,40 @@
       ctx.save();
       ctx.translate(this.x, this.y);
 
-      let color = '#38bdf8';
-      let symbol = '🚀';
-      if (this.type === 'rocket') { color = '#f59e0b'; symbol = '🚀'; }
-      else if (this.type === 'hoverboard') { color = '#a855f7'; symbol = '🛹'; }
-      else if (this.type === 'magnet') { color = '#38bdf8'; symbol = '🧲'; }
-      else if (this.type === 'spread') { color = '#fbbf24'; symbol = '⚡'; }
-      else if (this.type === 'heal') { color = '#22c55e'; symbol = '❤️'; }
-      else if (this.type === 'ammo') { color = '#f97316'; symbol = '📦'; }
-      else if (this.type === 'nuke') { color = '#ef4444'; symbol = '💣'; }
+      let imgKey = 'powerupRocket';
+      let auraColor = '#38bdf8';
+      if (this.type === 'rocket') { imgKey = 'powerupRocket'; auraColor = '#f59e0b'; }
+      else if (this.type === 'hoverboard') { imgKey = 'powerupHoverboard'; auraColor = '#a855f7'; }
+      else if (this.type === 'magnet') { imgKey = 'powerupMagnet'; auraColor = '#38bdf8'; }
+      else if (this.type === 'spread') { imgKey = 'powerupSpread'; auraColor = '#fbbf24'; }
+      else if (this.type === 'heal') { imgKey = 'powerupRepair'; auraColor = '#22c55e'; }
+      else if (this.type === 'ammo') { imgKey = 'powerupSpread'; auraColor = '#f97316'; }
+      else if (this.type === 'nuke') { imgKey = 'powerupNuke'; auraColor = '#ef4444'; }
 
-      ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
-      ctx.strokeStyle = color;
+      // Outer glowing pulse ring
+      ctx.save();
+      ctx.strokeStyle = auraColor;
       ctx.lineWidth = 2.5;
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 14;
+      ctx.shadowColor = auraColor;
+      ctx.shadowBlur = 16;
+      const pulseSize = this.radius + 3 + Math.sin(Date.now() * 0.008 + this.bobOffset) * 3;
       ctx.beginPath();
-      ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.arc(0, 0, pulseSize, 0, Math.PI * 2);
       ctx.stroke();
+      ctx.restore();
 
-      ctx.font = '18px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(symbol, 0, 0);
+      const pImg = images[imgKey];
+      if (pImg && pImg.complete && pImg.naturalWidth > 0) {
+        ctx.drawImage(pImg, -this.radius, -this.radius, this.radius * 2, this.radius * 2);
+      } else {
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+        ctx.strokeStyle = auraColor;
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+      }
 
       ctx.restore();
     }
@@ -1492,11 +1536,11 @@
     }
 
     // Update Ghost After-Images
-    gameState.afterImages.forEach(img => {
-      img.life -= dt;
-      img.alpha = Math.max(0, img.life / 0.35);
+    gameState.afterImages.forEach(ghost => {
+      ghost.life -= dt;
+      ghost.alpha = Math.max(0, ghost.life / 0.35);
     });
-    gameState.afterImages = gameState.afterImages.filter(img => img.life > 0);
+    gameState.afterImages = gameState.afterImages.filter(ghost => ghost.life > 0);
 
     // Enemy Spawning
     if (!gameState.bossSpawned) {
@@ -1620,10 +1664,10 @@
 
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
-    // 1. Parallax Background
+    // 1. Parallax Background Map
     const currentSector = SECTOR_CONFIG[gameState.sectorIndex] || SECTOR_CONFIG[0];
-    const bgImg = images[currentSector.bg] || images.bgMountain;
-    if (bgImg && bgImg.complete) {
+    const bgImg = images[currentSector.bg] || images.bgEarth;
+    if (bgImg && bgImg.complete && bgImg.naturalWidth > 0) {
       ctx.drawImage(bgImg, gameState.bgX1, 0, CANVAS_WIDTH + 2, CANVAS_HEIGHT);
       ctx.drawImage(bgImg, gameState.bgX2, 0, CANVAS_WIDTH + 2, CANVAS_HEIGHT);
     } else {

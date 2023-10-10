@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 50" width="160" height="50">
+  <defs>
+    <linearGradient id="neonDeck" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="40%" stop-color="#a855f7"/>
+      <stop offset="80%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#22c55e"/>
+    </linearGradient>
+    <filter id="neonBoardGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Plasma Underglow Thrusters -->
+  <ellipse cx="80" cy="38" rx="65" ry="8" fill="#38bdf8" opacity="0.85" filter="url(#neonBoardGlow)"/>
+  <ellipse cx="80" cy="38" rx="45" ry="4" fill="#ffffff" opacity="0.95"/>
+
+  <!-- Left & Right Ion Emitters -->
+  <circle cx="28" cy="36" r="6" fill="#a855f7" filter="url(#neonBoardGlow)"/>
+  <circle cx="132" cy="36" r="6" fill="#38bdf8" filter="url(#neonBoardGlow)"/>
+
+  <!-- Hoverboard Main Hull -->
+  <path d="M 16 22 C 8 22 8 32 20 32 L 140 32 C 152 32 152 22 144 22 Z" fill="url(#neonDeck)" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Top Grip Tape Pattern -->
+  <path d="M 22 25 L 138 25" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="8,4"/>
+</svg>
