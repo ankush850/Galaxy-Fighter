@@ -2,10 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Galaxy Fighter - Retro Arcade Combat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Galaxy Fighter - Android Production & Web Edition</title>
   <meta name="description" content="Production-ready retro aerial combat! Dodge UFOs, ride hoverboards, activate rocket boosts, reload missiles, and defeat alien motherships in Galaxy Fighter.">
+  
+  <!-- Android PWA & Standalone WebAPK Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#070a13">
+  <meta name="screen-orientation" content="landscape">
+
   <link rel="icon" type="image/png" href="recursos/imagens/planes/plane_1/plane_1_red.png">
+  <link rel="apple-touch-icon" href="recursos/imagens/planes/plane_1/plane_1_red.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,9 +23,9 @@
   <!-- Background Animated Starfield -->
   <div class="stars-bg"></div>
 
-  <main class="game-wrapper">
-    <!-- Top Header Bar -->
-    <header class="top-bar">
+  <main class="game-wrapper" id="gameWrapper">
+    <!-- Top Header Bar (Desktop & Tablet) -->
+    <header class="top-bar" id="topBar">
       <div class="logo-badge">
         <img src="recursos/imagens/planes/plane_1/plane_1_red.png" alt="Galaxy Fighter Logo" class="logo-icon">
         <h1 class="logo-title">GALAXY FIGHTER</h1>
@@ -23,15 +33,15 @@
       <div class="top-actions">
         <button id="btnRules" class="btn-icon" aria-label="Game Rules & Powerups" title="Mission Rules" type="button">
           <span>📜</span>
-          <span>Rules</span>
+          <span class="btn-text">Rules</span>
         </button>
         <button id="btnSoundToggle" class="btn-icon" aria-label="Toggle Sound" title="Toggle Sound" type="button">
           <span id="soundIcon">🔊</span>
-          <span id="soundText">Sound ON</span>
+          <span id="soundText" class="btn-text">Sound ON</span>
         </button>
         <button id="btnPause" class="btn-icon" aria-label="Pause Game" title="Pause Game" type="button">
           <span>⏸️</span>
-          <span>Pause</span>
+          <span class="btn-text">Pause</span>
         </button>
         <button id="btnFullscreen" class="btn-icon" aria-label="Toggle Fullscreen" title="Toggle Fullscreen" type="button">
           <span>⛶</span>
@@ -42,6 +52,13 @@
     <!-- Canvas Game Container -->
     <div class="canvas-container" id="canvasContainer">
       <canvas id="gameCanvas" width="1280" height="720"></canvas>
+
+      <!-- Minimal In-Game Mobile Top Overlay -->
+      <div class="mobile-hud-bar" id="mobileHudBar">
+        <button id="btnMobilePause" class="mobile-hud-btn" aria-label="Pause">⏸️</button>
+        <button id="btnMobileSound" class="mobile-hud-btn" aria-label="Sound">🔊</button>
+        <button id="btnMobileFullscreen" class="mobile-hud-btn" aria-label="Fullscreen">⛶</button>
+      </div>
 
       <!-- Start Screen Overlay -->
       <section id="startOverlay" class="screen-overlay">
@@ -104,7 +121,7 @@
       <!-- Game Rules & Mission Briefing Overlay -->
       <section id="rulesOverlay" class="screen-overlay hidden">
         <div class="result-card rules-card">
-          <h2 class="title-glow" style="font-size: 1.4rem;">MISSION RULES & SPECIAL POWER-UPS</h2>
+          <h2 class="title-glow" style="font-size: 1.3rem;">MISSION RULES & SPECIAL POWER-UPS</h2>
           <div class="rules-content">
             <div class="rule-section">
               <h4>🚀 Subway Surfers-Style Arcade Power-Ups</h4>
@@ -122,11 +139,9 @@
               <p>• <strong>Combo Multiplier</strong>: Rapid kills build score streaks up to <strong>5x Multiplier</strong>!</p>
             </div>
             <div class="rule-section">
-              <h4>🗺️ Sector Maps</h4>
-              <p>• <strong>Sector 1</strong>: Earth Stratosphere (10 UFOs)</p>
-              <p>• <strong>Sector 2</strong>: Asteroid Nebula (15 UFOs + Asteroid Hazards)</p>
-              <p>• <strong>Sector 3</strong>: Cyber Void Armada (20 Heavy Armored UFOs)</p>
-              <p>• <strong>Sector 4</strong>: Alien Mothership Boss (3 Phase Dreadnought)</p>
+              <h4>📱 Mobile Controls</h4>
+              <p>• <strong>Direct Touch</strong>: Drag your finger anywhere on screen to smoothly steer your aircraft!</p>
+              <p>• <strong>Virtual Buttons</strong>: Tap ▲/▼ to fly, 💨 to Dash, ✕ to Fire, and ○ to Reload.</p>
             </div>
           </div>
           <button id="btnCloseRules" class="btn-primary" type="button" style="margin-top: 10px;">
@@ -188,7 +203,7 @@
             <img src="recursos/imagens/UI/botao_cima.png" alt="Up">
           </button>
           <button id="touchDash" class="touch-btn btn-action-dash" aria-label="Quantum Dash" type="button" title="Warp Dash">
-            <span style="font-size: 1.2rem;">💨</span>
+            <span style="font-size: 1.25rem;">💨</span>
           </button>
           <button id="touchDown" class="touch-btn rotate-down" aria-label="Fly Down" type="button">
             <img src="recursos/imagens/UI/botao_cima.png" alt="Down">
@@ -208,7 +223,7 @@
     </div>
 
     <!-- Bottom Controls & Keybindings Guide Bar -->
-    <footer class="controls-bar">
+    <footer class="controls-bar" id="controlsBar">
       <div class="ctrl-group">
         <span class="key-badge">W</span> <span class="key-badge">S</span> or <span class="key-badge">▲</span> <span class="key-badge">▼</span>
         <span>Fly</span>
@@ -236,6 +251,14 @@
     </footer>
   </main>
 
+  <!-- Service Worker Registration for PWA Offline -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      });
+    }
+  </script>
   <script src="game.js"></script>
 </body>
 </html>

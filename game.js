@@ -107,6 +107,9 @@
   const soundIcon = document.getElementById('soundIcon');
   const soundText = document.getElementById('soundText');
   const btnFullscreen = document.getElementById('btnFullscreen');
+  const btnMobilePause = document.getElementById('btnMobilePause');
+  const btnMobileSound = document.getElementById('btnMobileSound');
+  const btnMobileFullscreen = document.getElementById('btnMobileFullscreen');
   const canvasContainer = document.getElementById('canvasContainer');
   const planeCards = document.querySelectorAll('.plane-card');
   const mapButtons = document.querySelectorAll('.map-btn');
@@ -115,6 +118,21 @@
   let selectedPlaneKey = 'plane_1_red';
   let selectedStartMap = 0;
   let selectedDifficulty = 'normal';
+
+  // Direct Touch Steering State
+  let isDirectDragging = false;
+  let touchTargetY = null;
+
+  // Haptic Feedback Engine
+  function triggerHaptic(pattern = 15) {
+    try {
+      if (window.AndroidNative && window.AndroidNative.vibrate) {
+        window.AndroidNative.vibrate(Array.isArray(pattern) ? pattern[0] : pattern);
+      } else if (navigator.vibrate) {
+        navigator.vibrate(pattern);
+      }
+    } catch (e) {}
+  }
 
   // --- Web Audio & Sound Engine ---
   const sounds = {};
@@ -340,8 +358,12 @@
     update(dt) {
       const speed = this.rocketTimer > 0 ? PLAYER_BASE_SPEED * 1.8 : PLAYER_BASE_SPEED;
 
-      // Movement
-      if (gameState.keys.up) {
+      // Direct Touch Drag / Steering (Mobile Ergonomics)
+      if (isDirectDragging && touchTargetY !== null) {
+        const dy = touchTargetY - this.y;
+        this.y += dy * 0.22;
+        this.tilt = Math.max(-0.25, Math.min(0.25, dy * 0.015));
+      } else if (gameState.keys.up) {
         this.y -= speed;
         this.tilt = Math.max(this.tilt - 0.05, -0.22);
       } else if (gameState.keys.down) {
@@ -408,6 +430,7 @@
           this.ammo = this.magazineCapacity;
           this.isReloading = false;
           playSound('click');
+          triggerHaptic(20);
           gameState.floatingTexts.push(new FloatingText(this.x, this.y - 40, 'RELOADED!', '#22c55e'));
         }
       }
@@ -440,6 +463,7 @@
         this.dashCooldown = 2.5;
         this.invulnerableTimer = 0.6;
         playSynthSound('dash');
+        triggerHaptic(25);
 
         // Leave ghost after-image
         gameState.afterImages.push({
@@ -466,6 +490,7 @@
         this.ammo--;
         this.shootCooldown = this.rapidFireTimer > 0 ? 0.10 : 0.20;
         playSound('shoot');
+        triggerHaptic(12);
 
         if (this.spreadShotTimer > 0) {
           // Triple spread plasma
@@ -504,6 +529,7 @@
         this.isReloading = true;
         this.reloadTimer = RELOAD_TIME;
         playSound('click');
+        triggerHaptic(15);
         gameState.floatingTexts.push(new FloatingText(this.x, this.y - 35, 'RELOADING...', '#f59e0b'));
       }
     }
@@ -520,6 +546,7 @@
         this.invulnerableTimer = 1.4;
         gameState.screenShake = 16;
         playSynthSound('nuke');
+        triggerHaptic([50, 30, 50]);
         gameState.floatingTexts.push(new FloatingText(this.x, this.y - 45, '🛹 HOVERBOARD SAVED YOU!', '#a855f7'));
 
         // EMP shockwave clearing nearby bullets
@@ -534,6 +561,7 @@
       gameState.screenShake = 14;
       gameState.combo = 0;
       playSound('death');
+      triggerHaptic([60, 40, 60]);
 
       for (let i = 0; i < 16; i++) {
         gameState.particles.push(new Particle(
@@ -939,31 +967,38 @@
       if (this.type === 'rocket') {
         player.rocketTimer = 6.0;
         playSynthSound('rocket');
+        triggerHaptic([40, 20, 40]);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '🚀 HYPER ROCKET JETPACK (6s)!', '#f59e0b'));
       } else if (this.type === 'hoverboard') {
         player.hasHoverboard = true;
         playSynthSound('hoverboard');
+        triggerHaptic([30, 20, 30]);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '🛹 COSMIC HOVERBOARD EQUIPPED!', '#a855f7'));
       } else if (this.type === 'magnet') {
         player.magnetTimer = 12.0;
         playSynthSound('magnet');
+        triggerHaptic([20, 20, 20]);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '🧲 SUPER COIN MAGNET (12s)!', '#38bdf8'));
       } else if (this.type === 'spread') {
         player.spreadShotTimer = 10.0;
         playSynthSound('powerup');
+        triggerHaptic(20);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '⚡ TRIPLE SPREAD SHOT!', '#fbbf24'));
       } else if (this.type === 'heal') {
         if (player.lives < MAX_LIVES) player.lives++;
         playSynthSound('powerup');
+        triggerHaptic([30, 30, 30]);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '❤️ HULL REPAIRED (+1 LIFE)', '#22c55e'));
       } else if (this.type === 'ammo') {
         player.ammo = player.magazineCapacity;
         player.rapidFireTimer = 6.0;
         playSynthSound('powerup');
+        triggerHaptic(20);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '📦 RAPID FIRE & AMMO!', '#f97316'));
       } else if (this.type === 'nuke') {
         playSynthSound('nuke');
         gameState.screenShake = 24;
+        triggerHaptic([80, 40, 80]);
         gameState.floatingTexts.push(new FloatingText(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, '💥 SMART NUKE ACTIVATED!', '#ef4444'));
         gameState.enemies.forEach(e => e.destroy());
         gameState.enemyProjectiles = [];
@@ -1877,6 +1912,62 @@
     bindTouch('touchReload', () => {
       if (gameState.player) gameState.player.reload();
     });
+
+    // Canvas Direct Touch Drag (Mobile Ergonomics)
+    canvas.addEventListener('touchstart', (e) => {
+      if (gameState.screen !== 'PLAYING') return;
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      if (touch) {
+        const scaleY = CANVAS_HEIGHT / rect.height;
+        const scaleX = CANVAS_WIDTH / rect.width;
+        const touchX = (touch.clientX - rect.left) * scaleX;
+        const touchY = (touch.clientY - rect.top) * scaleY;
+        if (touchX < CANVAS_WIDTH * 0.72) {
+          isDirectDragging = true;
+          touchTargetY = touchY;
+        }
+      }
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (gameState.screen !== 'PLAYING' || !isDirectDragging) return;
+      const rect = canvas.getBoundingClientRect();
+      const touch = e.touches[0];
+      if (touch) {
+        const scaleY = CANVAS_HEIGHT / rect.height;
+        touchTargetY = (touch.clientY - rect.top) * scaleY;
+      }
+    }, { passive: false });
+
+    const endTouchDrag = () => {
+      isDirectDragging = false;
+      touchTargetY = null;
+    };
+    canvas.addEventListener('touchend', endTouchDrag);
+    canvas.addEventListener('touchcancel', endTouchDrag);
+
+    // Mobile In-Game HUD Buttons
+    if (btnMobilePause) {
+      btnMobilePause.addEventListener('click', () => {
+        if (gameState.screen === 'PLAYING') pauseGame();
+        else if (gameState.screen === 'PAUSED') resumeGame();
+      });
+    }
+    if (btnMobileSound) {
+      btnMobileSound.addEventListener('click', () => {
+        toggleSound();
+      });
+    }
+    if (btnMobileFullscreen) {
+      btnMobileFullscreen.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+          canvasContainer.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      });
+    }
 
     // Plane Picker
     planeCards.forEach(card => {

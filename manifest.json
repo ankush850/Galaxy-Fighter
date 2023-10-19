@@ -1,0 +1,26 @@
+{
+  "name": "Galaxy Fighter",
+  "short_name": "GalaxyFighter",
+  "description": "Retro arcade aerial combat shooter with Subway Surfers-style power-ups, tactical reload, and multi-phase mothership battles.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#070a13",
+  "theme_color": "#070a13",
+  "categories": ["games", "arcade", "action"],
+  "icons": [
+    {
+      "src": "recursos/imagens/planes/plane_1/plane_1_red.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "recursos/imagens/planes/plane_1/plane_1_red.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

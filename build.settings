@@ -1,57 +1,62 @@
 --
--- For more information on build.settings, see the Project Build Settings guide at:
--- https://docs.coronalabs.com/guide/distribution/buildSettings
+-- Galaxy Fighter - Solar2D Android & iOS Build Settings
+-- Target SDK: 34 (Android 14 Ready), Min SDK: 21
 --
 
 settings =
 {
 	orientation =
 	{
-		-- Supported values for orientation:
-		-- portrait, portraitUpsideDown, landscapeLeft, landscapeRight
 		default = "landscapeRight",
-		supported = { "landscapeRight", },
+		supported = { "landscapeRight", "landscapeLeft" },
 	},
 
-	--
-	-- Android section
-	--
 	android =
 	{
+		minSdkVersion = "21",
+		targetSdkVersion = "34",
+		isLandscape = true,
+		usesExpansionFile = false,
+		supportsScreens =
+		{
+			smallScreens = true,
+			normalScreens = true,
+			largeScreens = true,
+			xlargeScreens = true,
+		},
 		usesPermissions =
 		{
 			"android.permission.INTERNET",
+			"android.permission.ACCESS_NETWORK_STATE",
+			"android.permission.VIBRATE",
+			"android.permission.WAKE_LOCK",
+		},
+		usesFeatures =
+		{
+			{ name = "android.hardware.touchscreen", required = true },
+			{ name = "android.hardware.touchscreen.multitouch", required = true },
 		},
 	},
 
-	--
-	-- iOS section
-	--
 	iphone =
 	{
 		xcassets = "Images.xcassets",
 		plist =
 		{
-			UIStatusBarHidden = false,
+			UIStatusBarHidden = true,
 			UILaunchStoryboardName = "LaunchScreen",
+			UIRequiresFullScreen = true,
+			UIPrerenderedIcon = true,
 		},
 	},
 
-	--
-	-- Plugins section
-	--
 	plugins =
 	{
-
 	},
 
-	--
-	-- Project section
-	--
 	excludeFiles =
 	{
-		-- Exclude unnecessary files for each platform
-		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
+		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", "*.md", "Dockerfile", "server.js", "sw.js" },
 		android = { "LaunchScreen.storyboardc", },
 	},
 }
