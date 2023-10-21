@@ -1012,3 +1012,4 @@ android_production_step_17: 2023-10-20 18:18:36 +0530 - Add fastclick touch even
 android_production_step_18: 2023-10-20 19:30:07 +0530 - Enable hardware acceleration layer in Android WebView
 android_production_step_19: 2023-10-20 20:43:45 +0530 - Optimize Web Audio Context auto-unlock on first mobile user gesture
 android_production_step_20: 2023-10-20 21:57:07 +0530 - Fine-tune virtual gamepad on-screen button sizing for thumb ergonomics
+android_production_step_21: 2023-10-21 10:47:21 +0530 - Add screen wake lock FLAG_KEEP_SCREEN_ON to prevent device sleep
