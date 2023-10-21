@@ -1016,3 +1016,4 @@ android_production_step_21: 2023-10-21 10:47:21 +0530 - Add screen wake lock FLA
 android_production_step_22: 2023-10-21 11:56:16 +0530 - Test offline PWA installation on Android Chrome and WebAPK generation
 android_production_step_23: 2023-10-21 13:14:17 +0530 - Verify 60-120 FPS hardware Canvas rendering across mobile screen densities
 android_production_step_24: 2023-10-21 14:27:27 +0530 - Final Android production integration testing and release build verification
+android_production_step_25: 2023-10-21 15:43:19 +0530 - Configure Android Web App Manifest with standalone fullscreen mode (phase 2)
