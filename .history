@@ -1050,3 +1050,4 @@ android_production_step_55: 2023-10-24 15:48:34 +0530 - Add Android native JavaS
 android_production_step_56: 2023-10-24 16:58:06 +0530 - Implement direct touch drag steering on Canvas for high mobile precision (phase 3)
 android_production_step_57: 2023-10-24 18:18:11 +0530 - Add mobile-specific in-game HUD overlay for pause, sound, and fullscreen (phase 3)
 android_production_step_58: 2023-10-24 19:29:41 +0530 - Optimize CSS for 100vw x 100vh mobile viewport with touch-action none (phase 3)
+android_production_step_59: 2023-10-24 20:43:45 +0530 - Add haptic vibration triggers on torpedo firing and warp dash (phase 3)
