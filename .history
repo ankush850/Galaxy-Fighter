@@ -1052,3 +1052,4 @@ android_production_step_57: 2023-10-24 18:18:11 +0530 - Add mobile-specific in-g
 android_production_step_58: 2023-10-24 19:29:41 +0530 - Optimize CSS for 100vw x 100vh mobile viewport with touch-action none (phase 3)
 android_production_step_59: 2023-10-24 20:43:45 +0530 - Add haptic vibration triggers on torpedo firing and warp dash (phase 3)
 android_production_step_60: 2023-10-24 21:56:08 +0530 - Add double haptic pulse on power-up pickup and heavy rumble on nuke (phase 3)
+android_production_step_61: 2023-10-25 10:42:36 +0530 - Update Solar2D build.settings with Target SDK 34 and modern Android permissions (phase 3)
