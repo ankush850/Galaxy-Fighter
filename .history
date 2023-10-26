@@ -1068,3 +1068,4 @@ android_production_step_73: 2023-10-26 13:13:09 +0530 - Configure Android Web Ap
 android_production_step_74: 2023-10-26 14:29:34 +0530 - Implement Service Worker sw.js with cache-first offline asset pipeline (phase 4)
 android_production_step_75: 2023-10-26 15:48:44 +0530 - Create native Android Studio root build.gradle with AGP 8.2 support (phase 4)
 android_production_step_76: 2023-10-26 16:59:10 +0530 - Configure Android app module build.gradle with Target SDK 34 and NDK filters (phase 4)
+android_production_step_77: 2023-10-26 18:19:18 +0530 - Configure AndroidManifest.xml with hardware acceleration and landscape sensor (phase 4)
