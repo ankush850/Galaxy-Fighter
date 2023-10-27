@@ -1075,3 +1075,4 @@ android_production_step_80: 2023-10-26 22:01:37 +0530 - Implement direct touch d
 android_production_step_81: 2023-10-27 10:49:46 +0530 - Add mobile-specific in-game HUD overlay for pause, sound, and fullscreen (phase 4)
 android_production_step_82: 2023-10-27 12:02:30 +0530 - Optimize CSS for 100vw x 100vh mobile viewport with touch-action none (phase 4)
 android_production_step_83: 2023-10-27 13:18:28 +0530 - Add haptic vibration triggers on torpedo firing and warp dash (phase 4)
+android_production_step_84: 2023-10-27 14:30:14 +0530 - Add double haptic pulse on power-up pickup and heavy rumble on nuke (phase 4)
