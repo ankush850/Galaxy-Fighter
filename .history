@@ -1115,3 +1115,4 @@ android_production_step_120: 2023-10-30 21:57:29 +0530 - Final Android productio
 architecture_step_1: 2023-11-01 11:31:20 +0530 - Create architecture/SYSTEM_OVERVIEW.md with high-level component diagrams
 architecture_step_2: 2023-11-01 13:55:10 +0530 - Document dual-runtime architecture for HTML5 Canvas and Solar2D Lua
 architecture_step_3: 2023-11-01 16:17:41 +0530 - Create architecture/ENGINE_PIPELINE.md with 10-layer render pipeline
+architecture_step_4: 2023-11-01 18:42:30 +0530 - Document requestAnimationFrame loop timing and delta time clamp math
