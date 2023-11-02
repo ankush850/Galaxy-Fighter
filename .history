@@ -1117,3 +1117,4 @@ architecture_step_2: 2023-11-01 13:55:10 +0530 - Document dual-runtime architect
 architecture_step_3: 2023-11-01 16:17:41 +0530 - Create architecture/ENGINE_PIPELINE.md with 10-layer render pipeline
 architecture_step_4: 2023-11-01 18:42:30 +0530 - Document requestAnimationFrame loop timing and delta time clamp math
 architecture_step_5: 2023-11-01 20:57:31 +0530 - Document screen shake decay matrix and camera translation formulas
+architecture_step_6: 2023-11-02 11:38:55 +0530 - Create architecture/ENTITY_COMPONENT_SYSTEM.md with class hierarchies
