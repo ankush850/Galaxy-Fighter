@@ -1140,3 +1140,4 @@ architecture_step_25: 2023-11-05 20:55:22 +0530 - Create architecture/ENGINE_PIP
 architecture_step_26: 2023-11-06 11:35:49 +0530 - Document requestAnimationFrame loop timing and delta time clamp math (phase 2)
 architecture_step_27: 2023-11-06 13:54:55 +0530 - Document screen shake decay matrix and camera translation formulas (phase 2)
 architecture_step_28: 2023-11-06 16:18:09 +0530 - Create architecture/ENTITY_COMPONENT_SYSTEM.md with class hierarchies (phase 2)
+architecture_step_29: 2023-11-06 18:41:15 +0530 - Document entity lifecycle state machine from spawn to garbage collection (phase 2)
