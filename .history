@@ -1183,3 +1183,4 @@ architecture_step_68: 2023-11-15 14:57:40 +0530 - Document dual-runtime architec
 architecture_step_69: 2023-11-15 17:45:39 +0530 - Create architecture/ENGINE_PIPELINE.md with 10-layer render pipeline (phase 4)
 architecture_step_70: 2023-11-15 20:28:21 +0530 - Document requestAnimationFrame loop timing and delta time clamp math (phase 4)
 architecture_step_71: 2023-11-16 12:02:14 +0530 - Document screen shake decay matrix and camera translation formulas (phase 4)
+architecture_step_72: 2023-11-16 14:54:22 +0530 - Create architecture/ENTITY_COMPONENT_SYSTEM.md with class hierarchies (phase 4)
