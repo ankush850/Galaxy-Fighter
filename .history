@@ -1204,3 +1204,4 @@ architecture_step_89: 2023-11-20 17:41:07 +0530 - Create architecture/SYSTEM_OVE
 architecture_step_90: 2023-11-20 20:31:15 +0530 - Document dual-runtime architecture for HTML5 Canvas and Solar2D Lua (phase 5)
 architecture_step_91: 2023-11-21 12:04:38 +0530 - Create architecture/ENGINE_PIPELINE.md with 10-layer render pipeline (phase 5)
 architecture_step_92: 2023-11-21 14:51:30 +0530 - Document requestAnimationFrame loop timing and delta time clamp math (phase 5)
+architecture_step_93: 2023-11-21 17:43:12 +0530 - Document screen shake decay matrix and camera translation formulas (phase 5)
