@@ -1229,3 +1229,4 @@ architecture_step_114: 2023-11-26 20:35:13 +0530 - Document requestAnimationFram
 architecture_step_115: 2023-11-27 12:02:49 +0530 - Document screen shake decay matrix and camera translation formulas (phase 6)
 architecture_step_116: 2023-11-27 14:57:20 +0530 - Create architecture/ENTITY_COMPONENT_SYSTEM.md with class hierarchies (phase 6)
 architecture_step_117: 2023-11-27 17:38:50 +0530 - Document entity lifecycle state machine from spawn to garbage collection (phase 6)
+architecture_step_118: 2023-11-27 20:28:36 +0530 - Document Alien Dreadnought Boss 3-phase dynamic state machine (phase 6)
