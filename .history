@@ -1232,3 +1232,4 @@ architecture_step_117: 2023-11-27 17:38:50 +0530 - Document entity lifecycle sta
 architecture_step_118: 2023-11-27 20:28:36 +0530 - Document Alien Dreadnought Boss 3-phase dynamic state machine (phase 6)
 architecture_step_119: 2023-11-28 12:02:12 +0530 - Create architecture/AUDIO_SYNTHESIS_ARCHITECTURE.md with audio graph (phase 6)
 architecture_step_120: 2023-11-28 14:50:34 +0530 - Document procedural frequency modulation curves for rocket and nuke FX (phase 6)
+architecture_step_121: 2023-11-28 17:43:41 +0530 - Document AudioContext auto-unlock and mobile gesture fallbacks (phase 6)
