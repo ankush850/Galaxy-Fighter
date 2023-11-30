@@ -258,12 +258,14 @@
   function toggleSound() {
     isMuted = !isMuted;
     if (isMuted) {
-      soundIcon.textContent = '🔇';
-      soundText.textContent = 'Sound OFF';
+      if (soundIcon) soundIcon.textContent = '🔇';
+      if (soundText) soundText.textContent = 'Sound OFF';
+      if (btnMobileSound) btnMobileSound.textContent = '🔇';
       if (bgmAudio) bgmAudio.pause();
     } else {
-      soundIcon.textContent = '🔊';
-      soundText.textContent = 'Sound ON';
+      if (soundIcon) soundIcon.textContent = '🔊';
+      if (soundText) soundText.textContent = 'Sound ON';
+      if (btnMobileSound) btnMobileSound.textContent = '🔊';
       if (gameState.screen === 'PLAYING') {
         playSound('bgm');
       }
@@ -1359,6 +1361,9 @@
 
   function spawnBoss() {
     gameState.bossSpawned = true;
+    gameState.enemies = [];
+    gameState.asteroids = [];
+    gameState.enemyProjectiles = [];
     gameState.bannerText = '⚠️ WARNING: ALIEN MOTHERSHIP APPROACHING! ⚠️';
     gameState.bannerTimer = 4.0;
     gameState.boss = new Boss();
@@ -1661,6 +1666,17 @@
           gameState.player.takeDamage();
         }
       });
+
+      // Player vs Boss
+      if (gameState.boss && !gameState.boss.markedForDeletion && !gameState.boss.dying) {
+        if (checkCollision(gameState.player, gameState.boss)) {
+          if (gameState.player.rocketTimer > 0) {
+            gameState.boss.takeDamage(5);
+          } else {
+            gameState.player.takeDamage();
+          }
+        }
+      }
     }
 
     // 3. Player vs Enemy Projectiles
@@ -1679,13 +1695,22 @@
     });
 
     // Clean up dead entities
+    if (gameState.boss && gameState.boss.markedForDeletion) {
+      gameState.boss = null;
+    }
     gameState.torpedoes = gameState.torpedoes.filter(t => !t.markedForDeletion);
     gameState.enemyProjectiles = gameState.enemyProjectiles.filter(p => !p.markedForDeletion);
     gameState.enemies = gameState.enemies.filter(e => !e.markedForDeletion);
     gameState.asteroids = gameState.asteroids.filter(a => !a.markedForDeletion);
     gameState.powerups = gameState.powerups.filter(p => !p.markedForDeletion);
     gameState.particles = gameState.particles.filter(p => !p.markedForDeletion);
+    if (gameState.particles.length > 250) {
+      gameState.particles = gameState.particles.slice(-250);
+    }
     gameState.floatingTexts = gameState.floatingTexts.filter(t => !t.markedForDeletion);
+    if (gameState.floatingTexts.length > 25) {
+      gameState.floatingTexts = gameState.floatingTexts.slice(-25);
+    }
   }
 
   function renderGame() {
