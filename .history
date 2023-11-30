@@ -1240,3 +1240,4 @@ architecture_step_125: 2023-11-29 17:45:13 +0530 - Create architecture/STATE_MAC
 architecture_step_126: 2023-11-29 20:28:30 +0530 - Document 4-sector campaign progression and hyperspace jump pipeline (phase 6)
 architecture_step_127: 2023-11-30 12:06:45 +0530 - Create architecture/ANDROID_NATIVE_BRIDGE.md with WebView hardware layers (phase 6)
 architecture_step_128: 2023-11-30 14:54:06 +0530 - Benchmark PWA WebAPK offline performance against Native Android APK (phase 6)
+architecture_step_129: 2023-11-30 17:46:47 +0530 - Document AndroidManifest hardware acceleration and immersive flags (phase 6)
