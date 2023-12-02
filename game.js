@@ -89,6 +89,8 @@
   const resultOverlay = document.getElementById('resultOverlay');
   const pauseOverlay = document.getElementById('pauseOverlay');
   const rulesOverlay = document.getElementById('rulesOverlay');
+  const shopOverlay = document.getElementById('shopOverlay');
+  const achievementsOverlay = document.getElementById('achievementsOverlay');
   const resultTitle = document.getElementById('resultTitle');
   const resultSub = document.getElementById('resultSub');
   const statSector = document.getElementById('statSector');
@@ -96,6 +98,16 @@
   const statKills = document.getElementById('statKills');
   const statScore = document.getElementById('statScore');
   const statHighScore = document.getElementById('statHighScore');
+  const topCoinCount = document.getElementById('topCoinCount');
+  const shopCoinBalance = document.getElementById('shopCoinBalance');
+  const achievementsCount = document.getElementById('achievementsCount');
+  const achievementsList = document.getElementById('achievementsList');
+  const achievementToast = document.getElementById('achievementToast');
+  const toastIcon = document.getElementById('toastIcon');
+  const toastTitle = document.getElementById('toastTitle');
+  const toastDesc = document.getElementById('toastDesc');
+  const mapPickerContainer = document.getElementById('mapPickerContainer');
+
   const btnStartGame = document.getElementById('btnStartGame');
   const btnRestart = document.getElementById('btnRestart');
   const btnResume = document.getElementById('btnResume');
@@ -103,6 +115,12 @@
   const btnPause = document.getElementById('btnPause');
   const btnRules = document.getElementById('btnRules');
   const btnCloseRules = document.getElementById('btnCloseRules');
+  const btnShop = document.getElementById('btnShop');
+  const btnStartShop = document.getElementById('btnStartShop');
+  const btnResultShop = document.getElementById('btnResultShop');
+  const btnCloseShop = document.getElementById('btnCloseShop');
+  const btnAchievements = document.getElementById('btnAchievements');
+  const btnCloseAchievements = document.getElementById('btnCloseAchievements');
   const btnSoundToggle = document.getElementById('btnSoundToggle');
   const soundIcon = document.getElementById('soundIcon');
   const soundText = document.getElementById('soundText');
@@ -110,14 +128,59 @@
   const btnMobilePause = document.getElementById('btnMobilePause');
   const btnMobileSound = document.getElementById('btnMobileSound');
   const btnMobileFullscreen = document.getElementById('btnMobileFullscreen');
+  const btnMobileOverdrive = document.getElementById('btnMobileOverdrive');
+  const touchOverdrive = document.getElementById('touchOverdrive');
+
   const canvasContainer = document.getElementById('canvasContainer');
   const planeCards = document.querySelectorAll('.plane-card');
   const mapButtons = document.querySelectorAll('.map-btn');
   const diffButtons = document.querySelectorAll('.diff-btn');
+  const modeButtons = document.querySelectorAll('.mode-btn');
 
   let selectedPlaneKey = 'plane_1_red';
   let selectedStartMap = 0;
   let selectedDifficulty = 'normal';
+  let selectedGameMode = 'campaign'; // 'campaign' or 'survival'
+
+  // Persistent Banked Coins & Upgrades
+  let bankedCoins = parseInt(localStorage.getItem('galaxyfighter_banked_coins') || '0', 10);
+  let upgrades = { mag: 0, speed: 0, power: 0, board: 0 };
+  try {
+    const savedUp = JSON.parse(localStorage.getItem('galaxyfighter_upgrades') || '{}');
+    upgrades = { ...upgrades, ...savedUp };
+  } catch (e) {}
+
+  // Achievements & Claimed Rewards
+  let achievements = {
+    first_blood: false,
+    rocket_ace: false,
+    hover_pro: false,
+    magnet_king: false,
+    overdrive_unleashed: false,
+    combo_master: false,
+    boss_slayer: false,
+    rich_pilot: false
+  };
+  try {
+    const savedAch = JSON.parse(localStorage.getItem('galaxyfighter_achievements') || '{}');
+    achievements = { ...achievements, ...savedAch };
+  } catch (e) {}
+
+  let claimedRewards = {};
+  try {
+    claimedRewards = JSON.parse(localStorage.getItem('galaxyfighter_claimed_rewards') || '{}');
+  } catch (e) {}
+
+  const ACHIEVEMENT_DEFS = [
+    { id: 'first_blood', title: 'First Blood', desc: 'Destroy your first alien UFO', reward: 50, icon: '🎯' },
+    { id: 'rocket_ace', title: 'Hyper Aviator', desc: 'Engage Hyper Rocket Jetpack boost', reward: 100, icon: '🚀' },
+    { id: 'hover_pro', title: 'Cosmic Surfer', desc: 'Equip a Cosmic Hoverboard shield', reward: 100, icon: '🛹' },
+    { id: 'magnet_king', title: 'Super Attractor', desc: 'Trigger Super Coin Magnet', reward: 100, icon: '🧲' },
+    { id: 'overdrive_unleashed', title: 'Overdrive Fury', desc: 'Unleash full Fury Overdrive Mega Laser', reward: 150, icon: '⚡' },
+    { id: 'combo_master', title: 'Combo King', desc: 'Reach a 5x Combat Score Multiplier', reward: 200, icon: '🔥' },
+    { id: 'boss_slayer', title: 'Mothership Slayer', desc: 'Defeat the Alien Dreadnought Boss', reward: 500, icon: '👑' },
+    { id: 'rich_pilot', title: 'Gold Commander', desc: 'Accumulate 300 total banked Gold Coins', reward: 250, icon: '💰' }
+  ];
 
   // Direct Touch Steering State
   let isDirectDragging = false;
@@ -296,6 +359,9 @@
   // --- Game State Object ---
   const gameState = {
     screen: 'START', // START, PLAYING, PAUSED, GAMEOVER, VICTORY
+    gameMode: 'campaign', // 'campaign' or 'survival'
+    survivalWave: 1,
+    fury: 0, // 0 to 100
     sectorIndex: 0,
     sectorKills: 0,
     totalKills: 0,
@@ -341,8 +407,12 @@
       this.y = CANVAS_HEIGHT / 2;
       this.tilt = 0;
       this.lives = MAX_LIVES;
-      this.ammo = MAGAZINE_CAPACITY;
-      this.magazineCapacity = MAGAZINE_CAPACITY;
+      this.magazineCapacity = MAGAZINE_CAPACITY + (upgrades.mag * 2);
+      this.ammo = this.magazineCapacity;
+      this.speedMultiplier = 1.0 + (upgrades.speed * 0.18);
+      this.powerupBonusTime = upgrades.power * 3.0;
+      this.hoverboardMaxHits = 1 + (upgrades.board >= 1 ? 1 : 0);
+      this.hoverboardHits = 0;
       this.isReloading = false;
       this.reloadTimer = 0;
       this.invulnerableTimer = 0;
@@ -350,15 +420,17 @@
 
       // Subway Surfers-style Power-up Timers & State
       this.rocketTimer = 0; // Hyper Rocket Jetpack
-      this.hasHoverboard = false; // Cosmic Hoverboard Extra Hit Shield
+      this.hasHoverboard = false; // Cosmic Hoverboard Shield
       this.magnetTimer = 0; // Super Coin Magnet
       this.spreadShotTimer = 0; // Triple Spread Plasma
       this.rapidFireTimer = 0; // Rapid Fire
       this.dashCooldown = 0; // Quantum Dash cooldown
+      this.overdriveTimer = 0; // Fury Overdrive Mega Laser
     }
 
     update(dt) {
-      const speed = this.rocketTimer > 0 ? PLAYER_BASE_SPEED * 1.8 : PLAYER_BASE_SPEED;
+      const baseSpeed = PLAYER_BASE_SPEED * this.speedMultiplier;
+      const speed = this.rocketTimer > 0 ? baseSpeed * 1.8 : baseSpeed;
 
       // Direct Touch Drag / Steering (Mobile Ergonomics)
       if (isDirectDragging && touchTargetY !== null) {
@@ -379,6 +451,23 @@
       const minY = 60;
       const maxY = CANVAS_HEIGHT - 60;
       this.y = Math.max(minY, Math.min(maxY, this.y));
+
+      // Overdrive mega beam tick
+      if (this.overdriveTimer > 0) {
+        this.overdriveTimer -= dt;
+        // Screen-wide particle lightning sparks
+        for (let i = 0; i < 2; i++) {
+          gameState.particles.push(new Particle(
+            this.x + 40 + Math.random() * (CANVAS_WIDTH - this.x),
+            this.y + (Math.random() * 40 - 20),
+            -(Math.random() * 4 + 2),
+            (Math.random() - 0.5) * 4,
+            Math.random() * 8 + 3,
+            Math.random() < 0.5 ? '#38bdf8' : '#fbbf24',
+            0.2
+          ));
+        }
+      }
 
       // Engine Flame & Hyper Rocket Exhaust
       if (this.rocketTimer > 0) {
@@ -537,19 +626,23 @@
     }
 
     takeDamage() {
-      // 1. If Hyper Rocket is active, player is totally invincible!
-      if (this.rocketTimer > 0 || this.invulnerableTimer > 0) {
+      // 1. If Hyper Rocket or Overdrive is active, player is totally invincible!
+      if (this.rocketTimer > 0 || this.overdriveTimer > 0 || this.invulnerableTimer > 0) {
         return;
       }
 
       // 2. If Hoverboard is active, it absorbs the crash!
       if (this.hasHoverboard) {
-        this.hasHoverboard = false;
+        this.hoverboardHits++;
+        if (this.hoverboardHits >= this.hoverboardMaxHits) {
+          this.hasHoverboard = false;
+          this.hoverboardHits = 0;
+        }
         this.invulnerableTimer = 1.4;
         gameState.screenShake = 16;
         playSynthSound('nuke');
         triggerHaptic([50, 30, 50]);
-        gameState.floatingTexts.push(new FloatingText(this.x, this.y - 45, '🛹 HOVERBOARD SAVED YOU!', '#a855f7'));
+        gameState.floatingTexts.push(new FloatingText(this.x, this.y - 45, '🛹 HOVERBOARD ABSORBED IMPACT!', '#a855f7'));
 
         // EMP shockwave clearing nearby bullets
         gameState.enemyProjectiles = [];
@@ -586,6 +679,33 @@
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.tilt);
+
+      // Draw Fury Overdrive Mega Laser Beam
+      if (this.overdriveTimer > 0) {
+        ctx.save();
+        const beamGrad = ctx.createLinearGradient(0, -30, 0, 30);
+        beamGrad.addColorStop(0, 'rgba(56, 189, 248, 0.05)');
+        beamGrad.addColorStop(0.2, 'rgba(56, 189, 248, 0.7)');
+        beamGrad.addColorStop(0.5, '#ffffff');
+        beamGrad.addColorStop(0.8, 'rgba(245, 158, 11, 0.7)');
+        beamGrad.addColorStop(1, 'rgba(245, 158, 11, 0.05)');
+
+        ctx.fillStyle = beamGrad;
+        ctx.fillRect(40, -32, CANVAS_WIDTH, 64);
+
+        // Core bright beam
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = '#38bdf8';
+        ctx.shadowBlur = 24;
+        ctx.fillRect(40, -10, CANVAS_WIDTH, 20);
+
+        // Charging muzzle lens
+        ctx.fillStyle = '#f59e0b';
+        ctx.beginPath();
+        ctx.arc(40, 0, 24, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
 
       // Draw Cosmic Hoverboard underneath aircraft using custom sprite
       if (this.hasHoverboard) {
@@ -806,9 +926,14 @@
       gameState.totalKills++;
       gameState.coins += this.isHeavy ? 2 : 1;
 
+      addFury(this.isHeavy ? 6 : 4);
+      checkAchievement('first_blood');
+
       gameState.combo++;
       gameState.comboTimer = 2.8;
       const multiplier = Math.min(gameState.combo, 5);
+      if (multiplier >= 5) checkAchievement('combo_master');
+
       const earnedScore = (this.isHeavy ? 300 : 150) * multiplier;
       gameState.score += earnedScore;
 
@@ -965,24 +1090,32 @@
 
     apply(player) {
       this.markedForDeletion = true;
+      addFury(3);
+
+      const bonus = player.powerupBonusTime || 0;
 
       if (this.type === 'rocket') {
-        player.rocketTimer = 6.0;
+        player.rocketTimer = 6.0 + bonus;
         playSynthSound('rocket');
         triggerHaptic([40, 20, 40]);
-        gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '🚀 HYPER ROCKET JETPACK (6s)!', '#f59e0b'));
+        checkAchievement('rocket_ace');
+        gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, `🚀 HYPER ROCKET (${(6 + bonus).toFixed(0)}s)!`, '#f59e0b'));
       } else if (this.type === 'hoverboard') {
         player.hasHoverboard = true;
+        player.hoverboardHits = 0;
         playSynthSound('hoverboard');
         triggerHaptic([30, 20, 30]);
-        gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '🛹 COSMIC HOVERBOARD EQUIPPED!', '#a855f7'));
+        checkAchievement('hover_pro');
+        const hitsText = player.hoverboardMaxHits > 1 ? ` (${player.hoverboardMaxHits} HITS)` : '';
+        gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, `🛹 HOVERBOARD EQUIPPED${hitsText}!`, '#a855f7'));
       } else if (this.type === 'magnet') {
-        player.magnetTimer = 12.0;
+        player.magnetTimer = 12.0 + bonus;
         playSynthSound('magnet');
         triggerHaptic([20, 20, 20]);
-        gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '🧲 SUPER COIN MAGNET (12s)!', '#38bdf8'));
+        checkAchievement('magnet_king');
+        gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, `🧲 COIN MAGNET (${(12 + bonus).toFixed(0)}s)!`, '#38bdf8'));
       } else if (this.type === 'spread') {
-        player.spreadShotTimer = 10.0;
+        player.spreadShotTimer = 10.0 + bonus;
         playSynthSound('powerup');
         triggerHaptic(20);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '⚡ TRIPLE SPREAD SHOT!', '#fbbf24'));
@@ -993,7 +1126,7 @@
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '❤️ HULL REPAIRED (+1 LIFE)', '#22c55e'));
       } else if (this.type === 'ammo') {
         player.ammo = player.magazineCapacity;
-        player.rapidFireTimer = 6.0;
+        player.rapidFireTimer = 6.0 + bonus;
         playSynthSound('powerup');
         triggerHaptic(20);
         gameState.floatingTexts.push(new FloatingText(player.x, player.y - 45, '📦 RAPID FIRE & AMMO!', '#f97316'));
@@ -1342,6 +1475,22 @@
 
   // --- Sector Progress Check ---
   function checkSectorProgress() {
+    if (gameState.gameMode === 'survival') {
+      if (gameState.sectorKills >= 15) {
+        gameState.survivalWave++;
+        gameState.sectorKills = 0;
+        gameState.sectorIndex = (gameState.sectorIndex + 1) % 4;
+        playSynthSound('powerup');
+        gameState.bannerText = `⚡ SURVIVAL WAVE ${gameState.survivalWave} INCOMING! ⚡`;
+        gameState.bannerTimer = 3.5;
+        gameState.score += 800;
+        if (gameState.survivalWave % 3 === 0) {
+          spawnBoss();
+        }
+      }
+      return;
+    }
+
     const currentSector = SECTOR_CONFIG[gameState.sectorIndex];
     if (gameState.sectorIndex < 3 && gameState.sectorKills >= currentSector.targetKills) {
       gameState.sectorIndex++;
@@ -1369,6 +1518,164 @@
     gameState.boss = new Boss();
   }
 
+  // --- Fury Overdrive System ---
+  function addFury(amount) {
+    if (!gameState.player || gameState.player.overdriveTimer > 0) return;
+    gameState.fury = Math.min(100, gameState.fury + amount);
+    if (gameState.fury >= 100) {
+      if (btnMobileOverdrive) btnMobileOverdrive.classList.add('ready');
+      if (touchOverdrive) touchOverdrive.classList.add('ready');
+    } else {
+      if (btnMobileOverdrive) btnMobileOverdrive.classList.remove('ready');
+      if (touchOverdrive) touchOverdrive.classList.remove('ready');
+    }
+  }
+
+  function activateOverdrive() {
+    if (gameState.screen !== 'PLAYING' || !gameState.player) return;
+    if (gameState.fury < 100 && gameState.player.overdriveTimer <= 0) {
+      gameState.floatingTexts.push(new FloatingText(gameState.player.x, gameState.player.y - 30, '⚡ FURY CHARGING...', '#94a3b8'));
+      return;
+    }
+    if (gameState.fury >= 100) {
+      gameState.fury = 0;
+      gameState.player.overdriveTimer = 4.0;
+      gameState.player.invulnerableTimer = 4.0;
+      gameState.screenShake = 22;
+      playSynthSound('nuke');
+      triggerHaptic([80, 40, 80]);
+      createExplosion(gameState.player.x + 40, gameState.player.y, 35, '#38bdf8');
+      gameState.floatingTexts.push(new FloatingText(CANVAS_WIDTH / 2, CANVAS_HEIGHT / 2, '⚡ FURY OVERDRIVE UNLEASHED! ⚡', '#fbbf24'));
+      if (btnMobileOverdrive) btnMobileOverdrive.classList.remove('ready');
+      if (touchOverdrive) touchOverdrive.classList.remove('ready');
+      checkAchievement('overdrive_unleashed');
+    }
+  }
+
+  // --- Achievement & Trophy Engine ---
+  let toastTimeout = null;
+  function showAchievementToast(title, desc) {
+    if (!achievementToast) return;
+    if (toastTitle) toastTitle.textContent = title;
+    if (toastDesc) toastDesc.textContent = desc;
+    achievementToast.classList.remove('hidden');
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      achievementToast.classList.add('hidden');
+    }, 3800);
+  }
+
+  function checkAchievement(id) {
+    if (achievements[id]) return;
+    achievements[id] = true;
+    localStorage.setItem('galaxyfighter_achievements', JSON.stringify(achievements));
+    const def = ACHIEVEMENT_DEFS.find(a => a.id === id);
+    if (def) {
+      bankedCoins += def.reward;
+      localStorage.setItem('galaxyfighter_banked_coins', bankedCoins.toString());
+      updateCoinBadges();
+      showAchievementToast(def.title, `${def.desc} (+${def.reward} 🪙)`);
+      playSynthSound('powerup');
+      triggerHaptic([30, 20, 40]);
+    }
+  }
+
+  function renderAchievementsList() {
+    if (!achievementsList) return;
+    achievementsList.innerHTML = '';
+    let unlockedCount = 0;
+
+    ACHIEVEMENT_DEFS.forEach(ach => {
+      const isUnlocked = achievements[ach.id] === true;
+      if (isUnlocked) unlockedCount++;
+
+      const row = document.createElement('div');
+      row.className = `achievement-row ${isUnlocked ? 'unlocked' : ''}`;
+      row.innerHTML = `
+        <div style="font-size: 1.5rem; flex-shrink: 0;">${ach.icon}</div>
+        <div style="flex-grow: 1;">
+          <h4 style="color: ${isUnlocked ? '#fbbf24' : '#94a3b8'}; font-size: 0.85rem; margin-bottom: 2px;">${ach.title}</h4>
+          <p style="color: #64748b; font-size: 0.72rem; margin: 0;">${ach.desc}</p>
+        </div>
+        <div style="text-align: right; flex-shrink: 0;">
+          <span style="font-family: 'GameFont', sans-serif; font-size: 0.68rem; color: ${isUnlocked ? '#22c55e' : '#64748b'};">
+            ${isUnlocked ? 'COMPLETED' : `+${ach.reward} 🪙`}
+          </span>
+        </div>
+      `;
+      achievementsList.appendChild(row);
+    });
+
+    if (achievementsCount) {
+      achievementsCount.textContent = `${unlockedCount}/${ACHIEVEMENT_DEFS.length} Unlocked`;
+    }
+  }
+
+  // --- Hangar Shop & Upgrades System ---
+  const UPGRADE_COSTS = {
+    mag: [100, 250],
+    speed: [150, 300],
+    power: [120, 260],
+    board: [200]
+  };
+
+  function updateCoinBadges() {
+    if (topCoinCount) topCoinCount.textContent = bankedCoins.toString();
+    if (shopCoinBalance) shopCoinBalance.textContent = `${bankedCoins} Coins`;
+    renderShopPills();
+    renderAchievementsList();
+  }
+
+  function renderShopPills() {
+    const updatePillUI = (type, pillContainerId, btnId, costSpanId) => {
+      const pillsContainer = document.getElementById(pillContainerId);
+      const btn = document.getElementById(btnId);
+      const costSpan = document.getElementById(costSpanId);
+      if (!pillsContainer || !btn || !costSpan) return;
+
+      const currentLvl = upgrades[type] || 0;
+      const costs = UPGRADE_COSTS[type];
+      const maxLvl = costs.length;
+
+      const pillElements = pillsContainer.querySelectorAll('.pill');
+      pillElements.forEach((p, idx) => {
+        if (idx <= currentLvl) p.classList.add('active');
+        else p.classList.remove('active');
+      });
+
+      if (currentLvl >= maxLvl) {
+        costSpan.textContent = 'MAXED';
+        btn.disabled = true;
+      } else {
+        const nextCost = costs[currentLvl];
+        costSpan.textContent = `${nextCost} 🪙`;
+        btn.disabled = bankedCoins < nextCost;
+      }
+    };
+
+    updatePillUI('mag', 'pillsMag', 'btnBuyMag', 'costMag');
+    updatePillUI('speed', 'pillsSpeed', 'btnBuySpeed', 'costSpeed');
+    updatePillUI('power', 'pillsPower', 'btnBuyPower', 'costPower');
+    updatePillUI('board', 'pillsBoard', 'btnBuyBoard', 'costBoard');
+  }
+
+  function buyUpgrade(type) {
+    const currentLvl = upgrades[type] || 0;
+    const costs = UPGRADE_COSTS[type];
+    if (currentLvl >= costs.length) return;
+
+    const cost = costs[currentLvl];
+    if (bankedCoins >= cost) {
+      bankedCoins -= cost;
+      upgrades[type] = currentLvl + 1;
+      localStorage.setItem('galaxyfighter_banked_coins', bankedCoins.toString());
+      localStorage.setItem('galaxyfighter_upgrades', JSON.stringify(upgrades));
+      playSound('powerup');
+      triggerHaptic(25);
+      updateCoinBadges();
+    }
+  }
+
   // --- Collision Helpers ---
   function checkCollision(r1, r2) {
     return (
@@ -1393,18 +1700,25 @@
 
   // --- HUD Rendering ---
   function drawHUD(ctx) {
-    // 1. Sector Badge
-    const currentSector = SECTOR_CONFIG[gameState.sectorIndex];
+    // 1. Sector Badge / Survival Wave
+    const currentSector = SECTOR_CONFIG[gameState.sectorIndex] || SECTOR_CONFIG[0];
     ctx.save();
     ctx.font = '12px "GameFont", sans-serif';
     ctx.fillStyle = currentSector.themeColor;
     ctx.textAlign = 'left';
-    ctx.fillText(`SECTOR ${currentSector.id}/4: ${currentSector.name}`, 40, 24);
 
-    if (gameState.sectorIndex < 3) {
+    if (gameState.gameMode === 'survival') {
+      ctx.fillText(`⚡ SURVIVAL WAVE ${gameState.survivalWave}`, 40, 24);
       ctx.font = '10px "GameFont", sans-serif';
       ctx.fillStyle = '#94a3b8';
-      ctx.fillText(`KILLS: ${gameState.sectorKills} / ${currentSector.targetKills}`, 40, 38);
+      ctx.fillText(`WAVE KILLS: ${gameState.sectorKills} / 15`, 40, 38);
+    } else {
+      ctx.fillText(`SECTOR ${currentSector.id}/4: ${currentSector.name}`, 40, 24);
+      if (gameState.sectorIndex < 3) {
+        ctx.font = '10px "GameFont", sans-serif';
+        ctx.fillStyle = '#94a3b8';
+        ctx.fillText(`KILLS: ${gameState.sectorKills} / ${currentSector.targetKills}`, 40, 38);
+      }
     }
     ctx.restore();
 
@@ -1425,20 +1739,21 @@
       ctx.restore();
     }
 
-    // 3. 6-Round Magazine
+    // 3. Magazine
     const magX = 40;
     const magY = 88;
-    for (let i = 0; i < MAGAZINE_CAPACITY; i++) {
-      const x = magX + i * 28;
+    const magCap = gameState.player.magazineCapacity;
+    for (let i = 0; i < magCap; i++) {
+      const x = magX + i * 24;
       const hasBullet = i < gameState.player.ammo;
       ctx.save();
       ctx.globalAlpha = hasBullet ? 1.0 : 0.2;
       const img = images.iconAmmo;
       if (img && img.complete) {
-        ctx.drawImage(img, x, magY, 26, 26);
+        ctx.drawImage(img, x, magY, 24, 24);
       } else {
         ctx.fillStyle = '#f59e0b';
-        ctx.fillRect(x, magY, 22, 22);
+        ctx.fillRect(x, magY, 20, 20);
       }
       ctx.restore();
     }
@@ -1446,21 +1761,56 @@
     // Reload Prompt
     if (gameState.player.ammo === 0 || gameState.player.isReloading) {
       ctx.save();
-      ctx.font = '12px "GameFont", sans-serif';
+      ctx.font = '11px "GameFont", sans-serif';
       ctx.fillStyle = gameState.player.isReloading ? '#f59e0b' : '#ef4444';
       ctx.textAlign = 'left';
       const prompt = gameState.player.isReloading ? 'RELOADING...' : 'PRESS [R] / [○] TO RELOAD!';
-      ctx.fillText(prompt, magX + MAGAZINE_CAPACITY * 28 + 10, magY + 18);
+      ctx.fillText(prompt, magX + magCap * 24 + 8, magY + 17);
       ctx.restore();
     }
 
-    // 4. Power-up Timers & Active Badges
+    // 4. Fury Overdrive Gauge
+    const furyX = 40;
+    const furyY = 124;
+    const furyW = 150;
+    const furyH = 12;
+    ctx.save();
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+    ctx.strokeStyle = gameState.fury >= 100 ? '#f59e0b' : '#334155';
+    ctx.lineWidth = 1.5;
+    ctx.fillRect(furyX, furyY, furyW, furyH);
+    ctx.strokeRect(furyX, furyY, furyW, furyH);
+
+    const furyPct = Math.min(1, gameState.fury / 100);
+    if (furyPct > 0) {
+      const grad = ctx.createLinearGradient(furyX, 0, furyX + furyW, 0);
+      grad.addColorStop(0, '#38bdf8');
+      grad.addColorStop(1, '#f59e0b');
+      ctx.fillStyle = grad;
+      ctx.fillRect(furyX + 2, furyY + 2, (furyW - 4) * furyPct, furyH - 4);
+    }
+
+    ctx.font = '9px "GameFont", sans-serif';
+    ctx.fillStyle = gameState.fury >= 100 ? '#fbbf24' : '#94a3b8';
+    const furyLabel = gameState.fury >= 100 ? '⚡ FURY READY! [Q/E / ⚡]' : `⚡ FURY: ${Math.floor(gameState.fury)}%`;
+    ctx.fillText(furyLabel, furyX, furyY - 4);
+    ctx.restore();
+
+    // 5. Power-up Timers & Active Badges
     let pOffset = 0;
+    if (gameState.player.overdriveTimer > 0) {
+      ctx.save();
+      ctx.fillStyle = '#fbbf24';
+      ctx.font = '11px "GameFont", sans-serif';
+      ctx.fillText(`⚡ OVERDRIVE BEAM: ${gameState.player.overdriveTimer.toFixed(1)}s`, 40, 156 + pOffset);
+      pOffset += 18;
+      ctx.restore();
+    }
     if (gameState.player.rocketTimer > 0) {
       ctx.save();
       ctx.fillStyle = '#f59e0b';
       ctx.font = '11px "GameFont", sans-serif';
-      ctx.fillText(`🚀 HYPER ROCKET: ${gameState.player.rocketTimer.toFixed(1)}s`, 40, 134 + pOffset);
+      ctx.fillText(`🚀 HYPER ROCKET: ${gameState.player.rocketTimer.toFixed(1)}s`, 40, 156 + pOffset);
       pOffset += 18;
       ctx.restore();
     }
@@ -1468,7 +1818,8 @@
       ctx.save();
       ctx.fillStyle = '#a855f7';
       ctx.font = '11px "GameFont", sans-serif';
-      ctx.fillText(`🛹 HOVERBOARD ACTIVE (1 CRASH HIT)`, 40, 134 + pOffset);
+      const hitsLeft = gameState.player.hoverboardMaxHits - gameState.player.hoverboardHits;
+      ctx.fillText(`🛹 HOVERBOARD (${hitsLeft} HIT${hitsLeft > 1 ? 'S' : ''} LEFT)`, 40, 156 + pOffset);
       pOffset += 18;
       ctx.restore();
     }
@@ -1476,7 +1827,7 @@
       ctx.save();
       ctx.fillStyle = '#38bdf8';
       ctx.font = '11px "GameFont", sans-serif';
-      ctx.fillText(`🧲 COIN MAGNET: ${gameState.player.magnetTimer.toFixed(1)}s`, 40, 134 + pOffset);
+      ctx.fillText(`🧲 COIN MAGNET: ${gameState.player.magnetTimer.toFixed(1)}s`, 40, 156 + pOffset);
       pOffset += 18;
       ctx.restore();
     }
@@ -1484,12 +1835,12 @@
       ctx.save();
       ctx.fillStyle = '#fbbf24';
       ctx.font = '11px "GameFont", sans-serif';
-      ctx.fillText(`⚡ SPREAD CANNON: ${gameState.player.spreadShotTimer.toFixed(1)}s`, 40, 134 + pOffset);
+      ctx.fillText(`⚡ SPREAD CANNON: ${gameState.player.spreadShotTimer.toFixed(1)}s`, 40, 156 + pOffset);
       pOffset += 18;
       ctx.restore();
     }
 
-    // 5. Coins & Score
+    // 6. Coins & Score
     ctx.save();
     const coinImg = images.iconCoin;
     if (coinImg && coinImg.complete) {
@@ -1514,7 +1865,7 @@
     }
     ctx.restore();
 
-    // 6. Sector Transition / Warning Banner
+    // 7. Sector Transition / Warning Banner
     if (gameState.bannerTimer > 0) {
       ctx.save();
       const alpha = Math.min(1, gameState.bannerTimer);
@@ -1592,8 +1943,8 @@
         gameState.enemySpawnTimer = Math.random() * 1.0 + spawnDelay;
       }
 
-      // Asteroid Spawning in Sector 2+
-      if (gameState.sectorIndex >= 1) {
+      // Asteroid Spawning in Sector 2+ or Survival
+      if (gameState.sectorIndex >= 1 || gameState.gameMode === 'survival') {
         gameState.asteroidSpawnTimer -= dt;
         if (gameState.asteroidSpawnTimer <= 0) {
           gameState.asteroids.push(new Asteroid());
@@ -1602,15 +1953,38 @@
       }
     }
 
+    // Effective DT for enemies (Matrix Bullet-Time slow-mo during Overdrive)
+    const entityDt = gameState.player && gameState.player.overdriveTimer > 0 ? dt * 0.45 : dt;
+
     // Update Entities
-    gameState.enemies.forEach(enemy => enemy.update(dt));
-    gameState.asteroids.forEach(ast => ast.update(dt));
+    gameState.enemies.forEach(enemy => enemy.update(entityDt));
+    gameState.asteroids.forEach(ast => ast.update(entityDt));
     gameState.powerups.forEach(pw => pw.update(dt));
-    if (gameState.boss) gameState.boss.update(dt);
+    if (gameState.boss) gameState.boss.update(entityDt);
     gameState.torpedoes.forEach(torp => torp.update(dt));
-    gameState.enemyProjectiles.forEach(proj => proj.update(dt));
+    gameState.enemyProjectiles.forEach(proj => proj.update(entityDt));
     gameState.particles.forEach(p => p.update(dt));
     gameState.floatingTexts.forEach(t => t.update(dt));
+
+    // --- Fury Overdrive Piercing Mega Beam Collision ---
+    if (gameState.player && gameState.player.overdriveTimer > 0) {
+      const py = gameState.player.y;
+      gameState.enemies.forEach(enemy => {
+        if (!enemy.markedForDeletion && Math.abs(enemy.y - py) < 65 && enemy.x > gameState.player.x) {
+          enemy.takeDamage(99);
+        }
+      });
+      gameState.asteroids.forEach(ast => {
+        if (!ast.markedForDeletion && Math.abs(ast.y - py) < 65 && ast.x > gameState.player.x) {
+          ast.takeDamage(99);
+        }
+      });
+      if (gameState.boss && !gameState.boss.markedForDeletion && !gameState.boss.dying) {
+        if (Math.abs(gameState.boss.y - py) < 120 && gameState.boss.x > gameState.player.x) {
+          gameState.boss.takeDamage(10 * dt);
+        }
+      }
+    }
 
     // --- Collisions ---
 
@@ -1774,7 +2148,10 @@
     }
 
     gameState.screen = 'PLAYING';
-    gameState.sectorIndex = selectedStartMap;
+    gameState.gameMode = selectedGameMode;
+    gameState.survivalWave = 1;
+    gameState.fury = 0;
+    gameState.sectorIndex = gameState.gameMode === 'survival' ? 0 : selectedStartMap;
     gameState.sectorKills = 0;
     gameState.totalKills = 0;
     gameState.coins = 0;
@@ -1793,12 +2170,14 @@
     gameState.afterImages = [];
     gameState.enemySpawnTimer = 1.0;
     gameState.asteroidSpawnTimer = 4.0;
-    gameState.bannerText = `🚀 MISSION LAUNCH: ${SECTOR_CONFIG[selectedStartMap].name} 🚀`;
+
+    const modeTitle = gameState.gameMode === 'survival' ? '⚡ ENDLESS SURVIVAL' : `MISSION: ${SECTOR_CONFIG[gameState.sectorIndex].name}`;
+    gameState.bannerText = `🚀 ${modeTitle} LAUNCHED 🚀`;
     gameState.bannerTimer = 3.0;
 
     gameState.player = new Player(selectedPlaneKey);
 
-    if (selectedStartMap === 3) {
+    if (gameState.gameMode === 'campaign' && gameState.sectorIndex === 3) {
       spawnBoss();
     }
 
@@ -1806,6 +2185,8 @@
     resultOverlay.classList.add('hidden');
     pauseOverlay.classList.add('hidden');
     rulesOverlay.classList.add('hidden');
+    shopOverlay.classList.add('hidden');
+    achievementsOverlay.classList.add('hidden');
 
     playSound('transition');
     playSound('bgm');
@@ -1835,18 +2216,30 @@
     gameState.screen = isVictory ? 'VICTORY' : 'GAMEOVER';
     stopBgm();
 
+    // Bank earned gold coins
+    bankedCoins += gameState.coins;
+    localStorage.setItem('galaxyfighter_banked_coins', bankedCoins.toString());
+    updateCoinBadges();
+
+    if (isVictory) {
+      checkAchievement('boss_slayer');
+    }
+    if (bankedCoins >= 300) {
+      checkAchievement('rich_pilot');
+    }
+
     if (gameState.score > gameState.highScore) {
       gameState.highScore = gameState.score;
       localStorage.setItem('galaxyfighter_highscore', gameState.highScore.toString());
     }
 
-    resultTitle.textContent = isVictory ? '🏆 CAMPAIGN VICTORY!' : '💀 MISSION FAILED';
+    resultTitle.textContent = isVictory ? '🏆 CAMPAIGN VICTORY!' : (gameState.gameMode === 'survival' ? '💀 SURVIVAL ENDED' : '💀 MISSION FAILED');
     resultTitle.style.color = isVictory ? '#22c55e' : '#ef4444';
     resultSub.textContent = isVictory
       ? 'The Alien Mothership is destroyed! The galaxy is safe thanks to you, Pilot!'
-      : 'Your aircraft was destroyed in combat. Better luck next flight!';
+      : (gameState.gameMode === 'survival' ? `You survived up to Wave ${gameState.survivalWave}! Excellent combat data banked.` : 'Your aircraft was destroyed in combat. Better luck next flight!');
 
-    statSector.textContent = isVictory ? 'CAMPAIGN CLEAR' : `Sector ${gameState.sectorIndex + 1}`;
+    statSector.textContent = isVictory ? 'CAMPAIGN CLEAR' : (gameState.gameMode === 'survival' ? `Wave ${gameState.survivalWave}` : `Sector ${gameState.sectorIndex + 1}`);
     statCoins.textContent = gameState.coins;
     statKills.textContent = gameState.totalKills;
     statScore.textContent = gameState.score;
@@ -1863,7 +2256,7 @@
       const key = e.key.toLowerCase();
       const code = e.code;
 
-      if (code === 'Space' || key === ' ' || key === 'enter' || key === 'w' || key === 's' || key === 'arrowup' || key === 'arrowdown' || key === 'r' || key === 'shift') {
+      if (code === 'Space' || key === ' ' || key === 'enter' || key === 'w' || key === 's' || key === 'arrowup' || key === 'arrowdown' || key === 'r' || key === 'shift' || key === 'q' || key === 'e') {
         e.preventDefault();
       }
 
@@ -1877,6 +2270,8 @@
         if (gameState.screen === 'PLAYING' && gameState.player) {
           gameState.player.dash();
         }
+      } else if (key === 'q' || key === 'e') {
+        activateOverdrive();
       } else if (code === 'Space' || key === ' ' || key === 'j' || key === 'enter') {
         if (gameState.screen === 'PLAYING' && gameState.player) {
           gameState.player.shoot();
@@ -1931,6 +2326,9 @@
     bindTouch('touchDash', () => {
       if (gameState.player) gameState.player.dash();
     });
+    bindTouch('touchOverdrive', () => {
+      activateOverdrive();
+    });
     bindTouch('touchShoot', () => {
       if (gameState.player) gameState.player.shoot();
     });
@@ -1973,6 +2371,11 @@
     canvas.addEventListener('touchcancel', endTouchDrag);
 
     // Mobile In-Game HUD Buttons
+    if (btnMobileOverdrive) {
+      btnMobileOverdrive.addEventListener('click', () => {
+        activateOverdrive();
+      });
+    }
     if (btnMobilePause) {
       btnMobilePause.addEventListener('click', () => {
         if (gameState.screen === 'PLAYING') pauseGame();
@@ -1993,6 +2396,20 @@
         }
       });
     }
+
+    // Mode Picker
+    modeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedGameMode = btn.getAttribute('data-mode');
+        if (mapPickerContainer) {
+          mapPickerContainer.style.display = selectedGameMode === 'survival' ? 'none' : 'flex';
+        }
+        playSound('click');
+        if (document.activeElement) document.activeElement.blur();
+      });
+    });
 
     // Plane Picker
     planeCards.forEach(card => {
@@ -2026,6 +2443,43 @@
         if (document.activeElement) document.activeElement.blur();
       });
     });
+
+    // Shop Upgrades Buttons
+    const bindBuy = (id, type) => {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', () => buyUpgrade(type));
+    };
+    bindBuy('btnBuyMag', 'mag');
+    bindBuy('btnBuySpeed', 'speed');
+    bindBuy('btnBuyPower', 'power');
+    bindBuy('btnBuyBoard', 'board');
+
+    // UI Navigation Modals
+    const openShop = () => {
+      updateCoinBadges();
+      shopOverlay.classList.remove('hidden');
+      playSound('click');
+    };
+    const closeShop = () => {
+      shopOverlay.classList.add('hidden');
+      playSound('click');
+    };
+    if (btnShop) btnShop.addEventListener('click', openShop);
+    if (btnStartShop) btnStartShop.addEventListener('click', openShop);
+    if (btnResultShop) btnResultShop.addEventListener('click', openShop);
+    if (btnCloseShop) btnCloseShop.addEventListener('click', closeShop);
+
+    const openAch = () => {
+      renderAchievementsList();
+      achievementsOverlay.classList.remove('hidden');
+      playSound('click');
+    };
+    const closeAch = () => {
+      achievementsOverlay.classList.add('hidden');
+      playSound('click');
+    };
+    if (btnAchievements) btnAchievements.addEventListener('click', openAch);
+    if (btnCloseAchievements) btnCloseAchievements.addEventListener('click', closeAch);
 
     // UI Buttons
     btnStartGame.addEventListener('click', () => {
@@ -2078,6 +2532,7 @@
   // --- Initialization ---
   function init() {
     initAudio();
+    updateCoinBadges();
     setupInputHandlers();
     loadAssets(() => {
       console.log('All Galaxy Fighter assets loaded!');
