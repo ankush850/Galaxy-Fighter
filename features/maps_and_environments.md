@@ -1,19 +1,34 @@
-# 🗺️ Maps & Galactic Environments
+# 🌌 Maps, Environments & Endless Survival Mode
 
-Galaxy Fighter features 4 distinct galactic environments with bespoke environmental mechanics:
+Galaxy Fighter offers dual gameplay modes: the narrative **4-Sector Campaign** and the infinite **Endless Survival Mode**.
 
-### 1. Sector 1: Earth Stratosphere
-- **Visuals**: Blue atmospheric gradient with alpine mountain peaks.
-- **Modifiers**: Baseline physics, standard enemy scout patterns.
+---
 
-### 2. Sector 2: Solar Nebula & Asteroid Field
-- **Visuals**: Vibrant cosmic nebula with purple stardust clouds.
-- **Modifiers**: Floating space asteroids (take 3 hits to split/destroy), interceptor UFOs shooting back plasma.
+## 🗺️ The 4 Celestial Sectors
 
-### 3. Sector 3: Cyber Void Outpost
-- **Visuals**: Dark space grid with crimson red giant star in the background.
-- **Modifiers**: Heavy Armored UFOs with 5 HP and dual plasma shots.
+```mermaid
+graph LR
+    S1["🌍 Sector 1: Earth Stratosphere<br/>Alpine Peaks • 10 Kills"] --> S2["🌌 Sector 2: Solar Nebula<br/>Purple Cosmic Dust • 15 Kills"]
+    S2 --> S3["⚡ Sector 3: Cyber Void<br/>Red Stellar Core • 20 Kills"]
+    S3 --> S4["👾 Sector 4: Mothership Core<br/>Alien Dreadnought Boss"]
+```
 
-### 4. Sector 4: Alien Mothership Hive
-- **Visuals**: Mothership reactor core with purple cosmic lightning storm.
-- **Modifiers**: Multi-phase Alien Mothership Boss battle with triple fireballs, dive sweeps, and enrage shield.
+| Sector | Name | Background Asset | Enemies & Hazards | Target Objective |
+| :--- | :--- | :--- | :--- | :--- |
+| **Sector 1** | 🌍 **Earth Stratosphere** | `sky_background_mountains.png` | Standard Scout UFOs | Eliminate 10 Scout UFOs |
+| **Sector 2** | 🌌 **Solar Nebula** | `bg_solar_nebula.jpg` | Fast Interceptor UFOs + Asteroid Belt | Eliminate 15 Interceptors |
+| **Sector 3** | ⚡ **Cyber Void** | `bg_cyber_void.jpg` | Heavy Armored UFOs + Asteroids | Eliminate 20 Heavy UFOs |
+| **Sector 4** | 👾 **Alien Mothership** | `bg_alien_mothership.jpg` | Multi-phase Alien Dreadnought Boss | Defeat the Boss Mothership |
+
+---
+
+## ♾️ Endless Survival Mode
+
+In **Endless Survival Mode**, pilots face an unending alien invasion where difficulty scales dynamically with every wave.
+
+### Survival Mode Rules & Mechanics
+1. **Infinite Waves**: Each wave requires **15 alien kills** to advance to the next tier.
+2. **Dynamic Map Rotation**: The celestial environment seamlessly cycles every wave ($\text{Earth} \to \text{Solar Nebula} \to \text{Cyber Void} \to \text{Mothership}$).
+3. **Scaling Hazard Density**: Asteroid spawn frequencies and heavy UFO spawn rates scale with wave tier.
+4. **Periodic Mothership Encounters**: Every 3rd wave ($\text{Wave } 3, 6, 9, 12, \dots$), an **Alien Dreadnought Boss** warps into combat!
+5. **Score Bounties**: Completing each survival wave grants $+800$ bonus combat points and banked coin multipliers.
