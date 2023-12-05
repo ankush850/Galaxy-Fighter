@@ -1,27 +1,39 @@
-# ⚡ Galaxy Fighter - Power-Ups & Combat Guide
+# ⚡ Galaxy Fighter - Power-Ups, Overdrive & Upgrades Guide
 
-Explore all arcade power-ups available in **Galaxy Fighter** and master their strategic combinations:
+Master all arcade power-ups, hangar augmentations, and the ultimate fury overdrive in **Galaxy Fighter**:
+
+---
+
+## 🚀 Arcade Power-Ups & Hangar Synergies
 
 ### 1. 🚀 Hyper Rocket Boost (Jetpack Mode)
-- **Duration**: 6 Seconds
-- **Effect**: Ignites blazing hyper-thrusters. Increases flight speed by 100%, turns the aircraft completely invincible, generates dynamic warp speed lines, and automatically obliterates any enemy UFOs or asteroids on contact!
+- **Base Duration**: $6.0\text{s}$ (Extendable to **$12.0\text{s}$** via Quantum Overclock).
+- **Combat Effect**: Ignites blazing hyper-thrusters. Increases flight speed by $100\%$, grants complete invulnerability, generates dynamic warp speed lines, and automatically obliterates all enemy UFOs or asteroids on contact!
 
 ### 2. 🛹 Cosmic Hoverboard (Surfer Shield)
-- **Duration**: Permanent until impacted
-- **Effect**: Spawns an ethereal neon hoverboard beneath the aircraft. Grants crash immunity: if you collide with a UFO or obstacle, the hoverboard absorbs 100% of the damage and detonates in an EMP shockwave, keeping your hearts untouched!
+- **Base Duration**: Until impacted (Upgradable to **2 Fatal Crashes Absorbed** via Plated Hoverboard).
+- **Combat Effect**: Spawns an ethereal neon hoverboard beneath the aircraft. Absorbs fatal crashes, keeping your life hearts untouched while detonating in a screen-clearing EMP shockwave!
 
 ### 3. 🧲 Super Coin Magnet
-- **Duration**: 12 Seconds
-- **Effect**: Emits high-frequency gravitational magnetic pulses that pull all gold coins, silver medals, and collectibles directly to the aircraft from anywhere on the screen.
+- **Base Duration**: $12.0\text{s}$ (Extendable to **$18.0\text{s}$** via Quantum Overclock).
+- **Combat Effect**: Emits high-frequency gravitational magnetic pulses ($900\text{px}$ radius) that pull all gold coins, silver medals, and collectibles directly to the aircraft from anywhere on screen.
 
-### 4. 💨 Quantum Warp Dash
-- **Trigger**: Double Tap <kbd>W</kbd>/<kbd>S</kbd> or Press <kbd>Shift</kbd> / On-Screen Dash Button
-- **Effect**: Instantly dashes through enemy bullet barrages leaving after-image hologram trails (3s cooldown).
+### 4. ⚡ Triple Spread Plasma Cannon
+- **Base Duration**: $10.0\text{s}$ (Extendable to **$16.0\text{s}$** via Quantum Overclock).
+- **Combat Effect**: Upgrades front torpedo launcher to a 3-way spread plasma barrage covering top, middle, and bottom lanes simultaneously.
 
-### 5. ⚡ Triple Spread Plasma Cannon
-- **Duration**: 10 Seconds
-- **Effect**: Upgrades front torpedo launcher to a 3-way spread plasma barrage covering top, middle, and bottom lanes simultaneously.
+### 5. 💨 Quantum Warp Dash
+- **Trigger**: Press <kbd>Shift</kbd> or On-Screen Dash Button ($2.5\text{s}$ cooldown).
+- **Combat Effect**: Instantly teleports vertically through enemy bullet barrages leaving ghost after-image hologram trails and granting $0.6\text{s}$ invulnerability.
 
 ### 6. 💣 Tactical Smart Nuke
-- **Trigger**: Instant on Collect
-- **Effect**: Triggers an EMP shockwave that vaporizes all enemies, hazards, and enemy bullets currently visible on screen with massive screen shake.
+- **Trigger**: Instant on pickup.
+- **Combat Effect**: Triggers a blinding EMP shockwave that vaporizes all enemies, hazards, and enemy bullets currently visible on screen with massive screen shake.
+
+---
+
+## ⚡ Ultimate Fury Overdrive Mechanics
+- **Charging**: Kills ($+4\%/+6\%$) and Gold Coins ($+3\%$) fill the $0-100\%$ Fury Gauge.
+- **Activation**: <kbd>Q</kbd> / <kbd>E</kbd> or on-screen ⚡ button.
+- **Mega Death Laser**: $1280\text{px}$ screen-wide cyan-amber thermal beam obliterates all normal enemies in the lane.
+- **Matrix Slow-Mo**: Slows down enemy velocities by $55\%$ for $4.0\text{s}$ while player is totally invincible.
