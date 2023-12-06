@@ -24,14 +24,46 @@ http://localhost:3000
 
 ## 🕹️ Controls Matrix
 
-| Action | Keyboard | On-Screen Touch / Gamepad |
+| Action | Keyboard | On-Screen Touch / Mobile |
 | :--- | :--- | :--- |
-| **Fly Up / Down** | <kbd>W</kbd> / <kbd>S</kbd> or <kbd>▲</kbd> / <kbd>▼</kbd> | Left-side Arrow Buttons |
-| **Quantum Warp Dash** | <kbd>Shift</kbd> (Double Tap) | **💨 DASH** Button (Left) |
-| **Fire Torpedo** | <kbd>Space</kbd> / <kbd>J</kbd> / <kbd>Enter</kbd> | **✕** Cross Action Button (Right) |
-| **Reload Ammo** | <kbd>R</kbd> / <kbd>K</kbd> (Auto on Empty) | **○** Circle Action Button (Right) |
+| **Fly Up / Down** | <kbd>W</kbd> / <kbd>S</kbd> or <kbd>▲</kbd> / <kbd>▼</kbd> | Direct Canvas Drag Steering or Left Buttons |
+| **Quantum Warp Dash** | <kbd>Shift</kbd> (Instant Dodge) | **💨 DASH** Action Button (Left) |
+| **Fury Overdrive Laser** | <kbd>Q</kbd> / <kbd>E</kbd> (When 100% Full) | **⚡ OVERDRIVE** Button (Right) |
+| **Fire Torpedo** | <kbd>Space</kbd> / <kbd>J</kbd> / <kbd>Enter</kbd> | **✕** Shoot Action Button (Right) |
+| **Reload Magazine** | <kbd>R</kbd> / <kbd>K</kbd> (Auto on Empty) | **○** Reload Button (Right) |
 | **Pause / Resume** | <kbd>P</kbd> or <kbd>Esc</kbd> | Top Pause Button |
 | **Mute / Unmute** | <kbd>M</kbd> | Top Sound Button |
+
+---
+
+## 🛠️ Hangar Workshop & Permanent Upgrades
+
+Spend banked gold coins accumulated across Campaign and Survival runs to permanently upgrade your aircraft:
+
+1. 🎯 **Expanded Magazine**: Increases missile capacity ($6 \to 8 \to 10$ missiles).
+2. 🚀 **Ion Thrusters**: Boosts vertical maneuverability and speed ($+15\%, +30\%, +45\%$).
+3. ⏱️ **Quantum Overclock**: Extends Hyper Rocket, Super Magnet, and Spread Shot durations ($+3\text{s}, +6\text{s}, +9\text{s}$).
+4. 🛹 **Plated Hoverboard**: Upgrades Cosmic Hoverboard to absorb up to **2 fatal collisions**!
+
+---
+
+## ⚡ Fury Overdrive Ultimate Ability
+- **Fury Gauge (0–100%)**: Fills by destroying UFOs ($+4\%/6\%$) and collecting coins ($+3\%$).
+- **Mega Death Laser**: Screen-wide horizontal thermal energy beam ($1280\text{px}$) piercing and vaporizing all enemies in the lane.
+- **Matrix Bullet-Time**: Enemy velocities and plasma fireballs slow down by **$55\%$ slow-mo** for 4.0s while the player is completely invulnerable.
+
+---
+
+## ♾️ Endless Survival Mode
+- **Infinite Scaling Waves**: Face continuous waves scaling every 15 kills.
+- **Dynamic Celestial Map Cycling**: Smoothly rotates between Earth Stratosphere, Solar Nebula, Cyber Void, and Alien Mothership Core.
+- **Alien Mothership Boss Battles**: Confront the Alien Dreadnought Boss every 3rd survival wave for massive score and coin bounties!
+
+---
+
+## 🏆 Trophy Room & Achievements
+- **8 Milestone Achievements**: Unlock trophies like *First Blood*, *Hyper Aviator*, *Cosmic Surfer*, *Super Attractor*, *Overdrive Fury*, *Combo King*, *Mothership Slayer*, and *Gold Commander*.
+- **Live In-Game Toast**: Real-time slide-in notifications with procedural audio chimes and haptic feedback.
 
 ---
 
@@ -39,13 +71,13 @@ http://localhost:3000
 
 | Power-Up | Duration | Visual Effect | Combat Effect |
 | :--- | :--- | :--- | :--- |
-| 🚀 **Hyper Rocket** | 6s | Giant flaming exhaust stream + warp lines | +100% Speed, total invulnerability, rams & destroys all enemies, auto-sucks coins |
-| 🛹 **Cosmic Hoverboard** | Until Hit | Neon hovering board under aircraft | Absorbs 1 fatal crash hit & triggers EMP shockwave, saving your life |
-| 🧲 **Super Coin Magnet** | 12s | Cyan magnetic pulse rings | Magnetically pulls every coin and drop on screen to the player |
-| ⚡ **Triple Spread Cannon** | 10s | Gold plasma energy trail | Fires 3 torpedoes simultaneously across all lanes |
-| 💨 **Quantum Warp Dash** | Instant (2.5s CD) | Ghost after-images | Teleports through enemy fire and hazards |
+| 🚀 **Hyper Rocket** | $6.0\text{s} + \text{Bonus}$ | Giant flaming exhaust stream + warp lines | $+100\%$ Speed, total invulnerability, rams & destroys all enemies, auto-sucks coins |
+| 🛹 **Cosmic Hoverboard** | Until Hit (Up to 2 Hits) | Neon hovering board under aircraft | Absorbs fatal crash hits & triggers EMP shockwave, saving your life |
+| 🧲 **Super Coin Magnet** | $12.0\text{s} + \text{Bonus}$ | Cyan magnetic pulse rings | Magnetically pulls every coin and drop on screen to the player ($900\text{px}$ range) |
+| ⚡ **Triple Spread Cannon** | $10.0\text{s} + \text{Bonus}$ | Gold plasma energy trail | Fires 3 torpedoes simultaneously across all lanes |
+| 💨 **Quantum Warp Dash** | Instant ($2.5\text{s}$ CD) | Ghost after-images | Teleports through enemy fire and hazards with $0.6\text{s}$ invulnerability |
 | 💣 **Tactical Smart Nuke** | Instant | White flash + explosion boom | Vaporizes all active enemies and bullets on screen |
-| ❤️ **Hull Repair Kit** | Instant | Green repair aura | Restores +1 Life Heart to max |
+| ❤️ **Hull Repair Kit** | Instant | Green repair aura | Restores $+1$ Life Heart to max |
 
 ---
 
@@ -58,26 +90,52 @@ http://localhost:3000
 
 ---
 
+## 📱 Android Studio & PWA APK Deployment
+
+```bash
+# 1. Open Native Android Studio Project
+android/
+
+# 2. Build Debug APK
+cd android && ./gradlew assembleDebug
+
+# 3. Output APK Path
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+---
+
 ## 📁 Repository Structure
 
 ```
 Galaxy-Fighter/
+├── android/                   # Native Android Studio Project (SDK 34, Java 17)
+├── architecture/              # 7 Comprehensive System Architecture Docs & Diagrams
+│   ├── SYSTEM_OVERVIEW.md
+│   ├── ENGINE_PIPELINE.md
+│   ├── ENTITY_COMPONENT_SYSTEM.md
+│   ├── AUDIO_SYNTHESIS_ARCHITECTURE.md
+│   ├── INPUT_AND_HAPTICS_PIPELINE.md
+│   ├── STATE_MACHINE_AND_SECTORS.md
+│   └── ANDROID_NATIVE_BRIDGE.md
 ├── docs/                      # Technical & Game Design Documentation
 │   ├── GAME_DESIGN.md         # Full GDD, mechanics, and weapon balance
 │   ├── ARCHITECTURE.md        # Engine loops, render pipeline & audio system
 │   ├── POWERUPS_GUIDE.md      # Detailed arcade powerups & combos
+│   ├── ANDROID_PRODUCTION.md  # APK build & WebAPK installation guide
 │   └── DEPLOYMENT.md          # Production, Docker, & Cloud hosting
 ├── features/                  # Modular Feature Specifications
-│   ├── maps_and_environments.md
 │   ├── hangar_and_aircrafts.md
-│   └── combat_mechanics.md
+│   ├── combat_mechanics.md
+│   ├── maps_and_environments.md
+│   └── trophies_and_achievements.md
 ├── recursos/                  # Game Assets (Audio, Fonts, Images)
 ├── cenas/                     # Solar2D Lua Game Scenes
-├── Dockerfile                 # Production Docker image configuration
+├── manifest.json              # Standalone Landscape PWA Manifest
+├── sw.js                      # Cache-first Offline Service Worker
 ├── index.html                 # Main Game Viewport & HUD Overlays
 ├── style.css                  # Modern Glassmorphic Arcade Stylesheet
 ├── game.js                    # Canvas 2D Engine Core & Powerups Logic
-├── server.js                  # Zero-dependency Production Node HTTP Server
 └── package.json               # Project manifest
 ```
 
@@ -85,3 +143,4 @@ Galaxy-Fighter/
 
 ## 📄 License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
