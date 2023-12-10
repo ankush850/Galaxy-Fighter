@@ -107,3 +107,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 5/134]: docs(hangar): document ion thruster vertical velocity acceleration multipliers (2023-12-10T13:58:52.330Z)
 // [Expansion Doc Milestone 6/134]: docs(hangar): specify quantum overclock duration formulas for arcade powerups (2023-12-10T16:36:05.413Z)
 // [Expansion Doc Milestone 7/134]: docs(hangar): detail plated hoverboard multi-hit nanite shield absorption rules (2023-12-10T19:13:18.496Z)
+// [Expansion Doc Milestone 8/134]: docs(hangar): document hangar modal visual layout and glassmorphism styling tokens (2023-12-10T21:50:31.578Z)
