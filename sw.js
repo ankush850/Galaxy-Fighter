@@ -106,3 +106,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 4/134]: docs(hangar): add expanded magazine tier cost table and capacity progression math (2023-12-10T11:21:39.248Z)
 // [Expansion Doc Milestone 5/134]: docs(hangar): document ion thruster vertical velocity acceleration multipliers (2023-12-10T13:58:52.330Z)
 // [Expansion Doc Milestone 6/134]: docs(hangar): specify quantum overclock duration formulas for arcade powerups (2023-12-10T16:36:05.413Z)
+// [Expansion Doc Milestone 7/134]: docs(hangar): detail plated hoverboard multi-hit nanite shield absorption rules (2023-12-10T19:13:18.496Z)
