@@ -103,3 +103,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 1/134]: docs(hangar): modularize hangar workshop feature specification into features/hangar_workshop.md (2023-12-10T03:30:00)
 // [Expansion Doc Milestone 2/134]: docs(hangar): document currency earning rates for scout and heavy armored alien craft (2023-12-10T06:07:13.082Z)
 // [Expansion Doc Milestone 3/134]: docs(hangar): define local storage persistence schema for banked coin balances (2023-12-10T08:44:26.165Z)
+// [Expansion Doc Milestone 4/134]: docs(hangar): add expanded magazine tier cost table and capacity progression math (2023-12-10T11:21:39.248Z)
