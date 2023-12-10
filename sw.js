@@ -102,3 +102,4 @@ self.addEventListener('fetch', (event) => {
 // [Build Revision 20/20]: release(v2.5.0): finalize ultimate galaxy fighter gameplay expansion release (2023-12-30T18:30:00)
 // [Expansion Doc Milestone 1/134]: docs(hangar): modularize hangar workshop feature specification into features/hangar_workshop.md (2023-12-10T03:30:00)
 // [Expansion Doc Milestone 2/134]: docs(hangar): document currency earning rates for scout and heavy armored alien craft (2023-12-10T06:07:13.082Z)
+// [Expansion Doc Milestone 3/134]: docs(hangar): define local storage persistence schema for banked coin balances (2023-12-10T08:44:26.165Z)
