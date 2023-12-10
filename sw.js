@@ -101,3 +101,4 @@ self.addEventListener('fetch', (event) => {
 // [Build Revision 19/20]: test(verification): complete browser test suite for hangar, trophies, and overdrive (2023-12-29T14:55:00)
 // [Build Revision 20/20]: release(v2.5.0): finalize ultimate galaxy fighter gameplay expansion release (2023-12-30T18:30:00)
 // [Expansion Doc Milestone 1/134]: docs(hangar): modularize hangar workshop feature specification into features/hangar_workshop.md (2023-12-10T03:30:00)
+// [Expansion Doc Milestone 2/134]: docs(hangar): document currency earning rates for scout and heavy armored alien craft (2023-12-10T06:07:13.082Z)
