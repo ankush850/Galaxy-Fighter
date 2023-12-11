@@ -111,3 +111,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 9/134]: docs(hangar): add error handling and null safety validation for corrupted local storage (2023-12-11T00:27:44.661Z)
 // [Expansion Doc Milestone 10/134]: docs(aircraft): split aircraft fleet specifications into features/aircraft_fleet.md (2023-12-11T03:04:57.744Z)
 // [Expansion Doc Milestone 11/134]: docs(aircraft): document red falcon tactical dogfighting traits and rapid muzzle recovery (2023-12-11T05:42:10.827Z)
+// [Expansion Doc Milestone 12/134]: docs(aircraft): document blue stealth aerodynamic speed bonuses and reduced hitbox profile (2023-12-11T08:19:23.909Z)
