@@ -116,3 +116,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 14/134]: docs(aircraft): document viper recon fighter magnetic coin attractor coils (2023-12-11T13:33:50.075Z)
 // [Expansion Doc Milestone 15/134]: docs(aircraft): document cosmo cruiser battleship reinforced hull and bonus magazine slot (2023-12-11T16:11:03.157Z)
 // [Expansion Doc Milestone 16/134]: docs(aircraft): add class hierarchy diagram for player aircraft entity inheritance (2023-12-11T18:48:16.240Z)
+// [Expansion Doc Milestone 17/134]: docs(aircraft): document title screen fighter card selection state synchronization (2023-12-11T21:25:29.323Z)
