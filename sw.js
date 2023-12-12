@@ -125,3 +125,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 23/134]: docs(overdrive): specify boss DPS thermal cutting rate during active overdrive state (2023-12-12T13:08:47.819Z)
 // [Expansion Doc Milestone 24/134]: docs(overdrive): document mobile touch overdrive button pulsing animation triggers (2023-12-12T15:46:00.902Z)
 // [Expansion Doc Milestone 25/134]: docs(overdrive): add state machine transition diagram for fury charging and discharge (2023-12-12T18:23:13.984Z)
+// [Expansion Doc Milestone 26/134]: docs(survival): modularize endless survival wave mode into features/endless_survival.md (2023-12-12T21:00:27.067Z)
