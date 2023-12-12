@@ -121,3 +121,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 19/134]: docs(overdrive): define fury gauge charging equations for kills, asteroids, and coins (2023-12-12T02:39:55.488Z)
 // [Expansion Doc Milestone 20/134]: docs(overdrive): document 1280px screen-wide mega death laser beam render pipeline (2023-12-12T05:17:08.571Z)
 // [Expansion Doc Milestone 21/134]: docs(overdrive): detail dual-frequency cyan and gold particle lightning discharge VFX (2023-12-12T07:54:21.654Z)
+// [Expansion Doc Milestone 22/134]: docs(overdrive): document matrix bullet-time 55% slow-mo delta time split mechanics (2023-12-12T10:31:34.736Z)
