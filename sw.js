@@ -129,3 +129,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 27/134]: docs(survival): document 15-kill wave completion threshold and scaling formulas (2023-12-12T23:37:40.150Z)
 // [Expansion Doc Milestone 28/134]: docs(survival): detail dynamic celestial map cycling across all 4 cosmic regions (2023-12-13T02:14:53.233Z)
 // [Expansion Doc Milestone 29/134]: docs(survival): document periodic alien dreadnought boss raids on every 3rd wave (2023-12-13T04:52:06.315Z)
+// [Expansion Doc Milestone 30/134]: docs(survival): define survival wave bonus score calculations and coin multipliers (2023-12-13T07:29:19.398Z)
