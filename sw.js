@@ -133,3 +133,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 31/134]: docs(survival): specify survival mode UI wave counters and banner notifications (2023-12-13T10:06:32.481Z)
 // [Expansion Doc Milestone 32/134]: docs(survival): document enemy spawn delay decay curves as survival waves advance (2023-12-13T12:43:45.563Z)
 // [Expansion Doc Milestone 33/134]: docs(campaign): modularize 4-sector narrative campaign into features/four_sector_campaign.md (2023-12-13T15:20:58.646Z)
+// [Expansion Doc Milestone 34/134]: docs(campaign): document sector 1 earth stratosphere scout alien interception mission (2023-12-13T17:58:11.729Z)
