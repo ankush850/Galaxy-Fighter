@@ -87,3 +87,4 @@ self.addEventListener('fetch', (event) => {
 // [Build Revision 5/20]: feat(trophies): create trophy room modal and live achievement tracker (2023-12-08T09:15:00)
 // [Build Revision 6/20]: feat(trophies): define 8 milestone achievements with reward coin bounties (2023-12-09T13:40:00)
 // [Build Revision 7/20]: feat(trophies): add in-game animated achievement unlocked toast notification (2023-12-11T17:05:00)
+// [Build Revision 8/20]: feat(overdrive): implement fury gauge accumulator for combat kills and coins (2023-12-13T10:50:00)
