@@ -132,3 +132,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 30/134]: docs(survival): define survival wave bonus score calculations and coin multipliers (2023-12-13T07:29:19.398Z)
 // [Expansion Doc Milestone 31/134]: docs(survival): specify survival mode UI wave counters and banner notifications (2023-12-13T10:06:32.481Z)
 // [Expansion Doc Milestone 32/134]: docs(survival): document enemy spawn delay decay curves as survival waves advance (2023-12-13T12:43:45.563Z)
+// [Expansion Doc Milestone 33/134]: docs(campaign): modularize 4-sector narrative campaign into features/four_sector_campaign.md (2023-12-13T15:20:58.646Z)
