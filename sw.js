@@ -138,3 +138,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 36/134]: docs(campaign): document sector 3 cyber void armada heavy armored alien confrontations (2023-12-13T23:12:37.894Z)
 // [Expansion Doc Milestone 37/134]: docs(campaign): document sector 4 alien dreadnought mothership reactor core infiltration (2023-12-14T01:49:50.977Z)
 // [Expansion Doc Milestone 38/134]: docs(campaign): detail hyperspace jump speed multiplier and visual warp banner timing (2023-12-14T04:27:04.060Z)
+// [Expansion Doc Milestone 39/134]: docs(powerups): modularize subway surfers arcade power-ups into features/subway_powerups.md (2023-12-14T07:04:17.142Z)
