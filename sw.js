@@ -141,3 +141,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 39/134]: docs(powerups): modularize subway surfers arcade power-ups into features/subway_powerups.md (2023-12-14T07:04:17.142Z)
 // [Expansion Doc Milestone 40/134]: docs(powerups): document hyper rocket jetpack invulnerability and contact ramming kills (2023-12-14T09:41:30.225Z)
 // [Expansion Doc Milestone 41/134]: docs(powerups): document cosmic hoverboard collision shield and EMP shockwave detonation (2023-12-14T12:18:43.308Z)
+// [Expansion Doc Milestone 42/134]: docs(powerups): document super coin magnet 900px gravitational attraction radius (2023-12-14T14:55:56.390Z)
