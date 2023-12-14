@@ -143,3 +143,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 41/134]: docs(powerups): document cosmic hoverboard collision shield and EMP shockwave detonation (2023-12-14T12:18:43.308Z)
 // [Expansion Doc Milestone 42/134]: docs(powerups): document super coin magnet 900px gravitational attraction radius (2023-12-14T14:55:56.390Z)
 // [Expansion Doc Milestone 43/134]: docs(powerups): document triple spread plasma 3-lane forward firing cone coverage (2023-12-14T17:33:09.473Z)
+// [Expansion Doc Milestone 44/134]: docs(powerups): document quantum warp dash vertical teleport and ghost after-images (2023-12-14T20:10:22.556Z)
