@@ -152,3 +152,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 50/134]: docs(magazine): document manual reload keybindings (R, K, C) and mobile circle button (2023-12-15T11:53:41.052Z)
 // [Expansion Doc Milestone 51/134]: docs(magazine): specify circular reload progress arc rendered around aircraft sprite (2023-12-15T14:30:54.135Z)
 // [Expansion Doc Milestone 52/134]: docs(magazine): document HUD magazine slot transparency and bullet state styling (2023-12-15T17:08:07.218Z)
+// [Expansion Doc Milestone 53/134]: docs(combo): modularize combo scoring architecture into features/combo_scoring.md (2023-12-15T19:45:20.300Z)
