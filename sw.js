@@ -150,3 +150,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 48/134]: docs(magazine): modularize tactical magazine mechanics into features/tactical_magazine.md (2023-12-15T06:39:14.887Z)
 // [Expansion Doc Milestone 49/134]: docs(magazine): document automated 1.0s reload trigger upon magazine exhaustion (2023-12-15T09:16:27.969Z)
 // [Expansion Doc Milestone 50/134]: docs(magazine): document manual reload keybindings (R, K, C) and mobile circle button (2023-12-15T11:53:41.052Z)
+// [Expansion Doc Milestone 51/134]: docs(magazine): specify circular reload progress arc rendered around aircraft sprite (2023-12-15T14:30:54.135Z)
