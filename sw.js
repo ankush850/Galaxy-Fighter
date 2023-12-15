@@ -146,3 +146,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 44/134]: docs(powerups): document quantum warp dash vertical teleport and ghost after-images (2023-12-14T20:10:22.556Z)
 // [Expansion Doc Milestone 45/134]: docs(powerups): document tactical smart nuke screen clear and high-intensity shake (2023-12-14T22:47:35.639Z)
 // [Expansion Doc Milestone 46/134]: docs(powerups): document hull repair kit health restoration and max life caps (2023-12-15T01:24:48.721Z)
+// [Expansion Doc Milestone 47/134]: docs(powerups): add random drop chance weight distribution diagram (32% enemy drop rate) (2023-12-15T04:02:01.804Z)
