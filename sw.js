@@ -148,3 +148,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 46/134]: docs(powerups): document hull repair kit health restoration and max life caps (2023-12-15T01:24:48.721Z)
 // [Expansion Doc Milestone 47/134]: docs(powerups): add random drop chance weight distribution diagram (32% enemy drop rate) (2023-12-15T04:02:01.804Z)
 // [Expansion Doc Milestone 48/134]: docs(magazine): modularize tactical magazine mechanics into features/tactical_magazine.md (2023-12-15T06:39:14.887Z)
+// [Expansion Doc Milestone 49/134]: docs(magazine): document automated 1.0s reload trigger upon magazine exhaustion (2023-12-15T09:16:27.969Z)
