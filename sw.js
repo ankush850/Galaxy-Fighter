@@ -155,3 +155,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 53/134]: docs(combo): modularize combo scoring architecture into features/combo_scoring.md (2023-12-15T19:45:20.300Z)
 // [Expansion Doc Milestone 54/134]: docs(combo): document 2.8s combo decay timer and multiplier formula (min 5x) (2023-12-15T22:22:33.383Z)
 // [Expansion Doc Milestone 55/134]: docs(combo): detail floating combat text formatting and gold particle rendering (2023-12-16T00:59:46.466Z)
+// [Expansion Doc Milestone 56/134]: docs(combo): document score scaling table for scout UFOs, heavy UFOs, and boss hits (2023-12-16T03:36:59.548Z)
