@@ -162,3 +162,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 60/134]: docs(boss): document phase 3 enraged mode glowing red barrier and 5-way barrage (2023-12-16T14:05:51.879Z)
 // [Expansion Doc Milestone 61/134]: docs(boss): specify boss HP scaling across normal, veteran, and insane difficulties (2023-12-16T16:43:04.962Z)
 // [Expansion Doc Milestone 62/134]: docs(boss): document top HUD 480px gradient health bar and phase badge renderer (2023-12-16T19:20:18.045Z)
+// [Expansion Doc Milestone 63/134]: docs(hazards): modularize space asteroid hazards into features/asteroid_hazards.md (2023-12-16T21:57:31.127Z)
