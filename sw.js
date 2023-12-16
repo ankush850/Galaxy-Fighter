@@ -157,3 +157,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 55/134]: docs(combo): detail floating combat text formatting and gold particle rendering (2023-12-16T00:59:46.466Z)
 // [Expansion Doc Milestone 56/134]: docs(combo): document score scaling table for scout UFOs, heavy UFOs, and boss hits (2023-12-16T03:36:59.548Z)
 // [Expansion Doc Milestone 57/134]: docs(boss): modularize alien mothership boss encounter into features/alien_mothership_boss.md (2023-12-16T06:14:12.631Z)
+// [Expansion Doc Milestone 58/134]: docs(boss): document phase 1 single targeted plasma fireball attacks (2023-12-16T08:51:25.714Z)
