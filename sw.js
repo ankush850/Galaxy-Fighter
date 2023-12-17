@@ -170,3 +170,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 68/134]: docs(trophies): document first blood, hyper aviator, and cosmic surfer achievements (2023-12-17T11:03:36.541Z)
 // [Expansion Doc Milestone 69/134]: docs(trophies): document super attractor, overdrive fury, and combo king achievements (2023-12-17T13:40:49.624Z)
 // [Expansion Doc Milestone 70/134]: docs(trophies): document mothership slayer and gold commander milestone bounties (2023-12-17T16:18:02.706Z)
+// [Expansion Doc Milestone 71/134]: docs(trophies): specify in-game slide-in toast notification animation and timeout (2023-12-17T18:55:15.789Z)
