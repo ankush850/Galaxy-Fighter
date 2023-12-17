@@ -163,3 +163,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 61/134]: docs(boss): specify boss HP scaling across normal, veteran, and insane difficulties (2023-12-16T16:43:04.962Z)
 // [Expansion Doc Milestone 62/134]: docs(boss): document top HUD 480px gradient health bar and phase badge renderer (2023-12-16T19:20:18.045Z)
 // [Expansion Doc Milestone 63/134]: docs(hazards): modularize space asteroid hazards into features/asteroid_hazards.md (2023-12-16T21:57:31.127Z)
+// [Expansion Doc Milestone 64/134]: docs(hazards): document 3-hit damage thresholds and splitting particle physics (2023-12-17T00:34:44.210Z)
