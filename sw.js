@@ -174,3 +174,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 72/134]: docs(trophies): document audio chime and haptic feedback dispatch upon achievement unlock (2023-12-17T21:32:28.872Z)
 // [Expansion Doc Milestone 73/134]: docs(mobile): modularize direct touch steering into features/direct_touch_steering.md (2023-12-18T00:09:41.954Z)
 // [Expansion Doc Milestone 74/134]: docs(mobile): document left 72% canvas touch drag Y-follow smoothing formula (2023-12-18T02:46:55.037Z)
+// [Expansion Doc Milestone 75/134]: docs(mobile): document right 28% canvas multi-touch action button hit zones (2023-12-18T05:24:08.120Z)
