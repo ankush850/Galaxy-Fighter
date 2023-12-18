@@ -176,3 +176,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 74/134]: docs(mobile): document left 72% canvas touch drag Y-follow smoothing formula (2023-12-18T02:46:55.037Z)
 // [Expansion Doc Milestone 75/134]: docs(mobile): document right 28% canvas multi-touch action button hit zones (2023-12-18T05:24:08.120Z)
 // [Expansion Doc Milestone 76/134]: docs(mobile): specify spring easing physics for aircraft vertical tilt response (2023-12-18T08:01:21.203Z)
+// [Expansion Doc Milestone 77/134]: docs(audio): modularize procedural audio synthesis into features/audio_synthesis.md (2023-12-18T10:38:34.285Z)
