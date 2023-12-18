@@ -177,3 +177,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 75/134]: docs(mobile): document right 28% canvas multi-touch action button hit zones (2023-12-18T05:24:08.120Z)
 // [Expansion Doc Milestone 76/134]: docs(mobile): specify spring easing physics for aircraft vertical tilt response (2023-12-18T08:01:21.203Z)
 // [Expansion Doc Milestone 77/134]: docs(audio): modularize procedural audio synthesis into features/audio_synthesis.md (2023-12-18T10:38:34.285Z)
+// [Expansion Doc Milestone 78/134]: docs(audio): document hyper rocket exponential sawtooth synthesis curve (80Hz to 600Hz) (2023-12-18T13:15:47.368Z)
