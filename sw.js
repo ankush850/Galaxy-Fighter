@@ -184,3 +184,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 82/134]: docs(android): modularize android native bridge into features/android_native_bridge.md (2023-12-18T23:44:39.699Z)
 // [Expansion Doc Milestone 83/134]: docs(android): document Android SDK 34 JavascriptInterface vibration bridge methods (2023-12-19T02:21:52.781Z)
 // [Expansion Doc Milestone 84/134]: docs(android): document AndroidManifest hardware acceleration and immersive sticky flags (2023-12-19T04:59:05.864Z)
+// [Expansion Doc Milestone 85/134]: docs(android): document PWA WebAPK offline service worker caching strategy (2023-12-19T07:36:18.947Z)
