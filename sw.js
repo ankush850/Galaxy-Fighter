@@ -189,3 +189,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 87/134]: docs(arch): document storage contracts and deserialization safety in hangar subsystem (2023-12-19T12:50:45.112Z)
 // [Expansion Doc Milestone 88/134]: docs(arch): create dedicated fury overdrive pipeline specification in architecture/FURY_OVERDRIVE_PIPELINE.md (2023-12-19T15:27:58.195Z)
 // [Expansion Doc Milestone 89/134]: docs(arch): document split delta-time frame execution sequence and raycast collisions (2023-12-19T18:05:11.278Z)
+// [Expansion Doc Milestone 90/134]: docs(arch): create dedicated survival wave engine specification in architecture/SURVIVAL_WAVE_ENGINE.md (2023-12-19T20:42:24.360Z)
