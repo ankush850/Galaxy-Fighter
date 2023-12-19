@@ -90,3 +90,4 @@ self.addEventListener('fetch', (event) => {
 // [Build Revision 8/20]: feat(overdrive): implement fury gauge accumulator for combat kills and coins (2023-12-13T10:50:00)
 // [Build Revision 9/20]: feat(overdrive): add mega death laser beam rendering and particle discharge (2023-12-15T15:20:00)
 // [Build Revision 10/20]: feat(overdrive): add matrix bullet-time slow-mo and beam piercing collision (2023-12-17T11:35:00)
+// [Build Revision 11/20]: feat(overdrive): bind hotkeys (Q/E) and mobile on-screen overdrive HUD button (2023-12-19T14:10:00)
