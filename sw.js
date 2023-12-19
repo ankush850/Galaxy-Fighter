@@ -187,3 +187,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 85/134]: docs(android): document PWA WebAPK offline service worker caching strategy (2023-12-19T07:36:18.947Z)
 // [Expansion Doc Milestone 86/134]: docs(arch): create dedicated hangar persistence architecture in architecture/HANGAR_AND_PERSISTENCE_ARCHITECTURE.md (2023-12-19T10:13:32.030Z)
 // [Expansion Doc Milestone 87/134]: docs(arch): document storage contracts and deserialization safety in hangar subsystem (2023-12-19T12:50:45.112Z)
+// [Expansion Doc Milestone 88/134]: docs(arch): create dedicated fury overdrive pipeline specification in architecture/FURY_OVERDRIVE_PIPELINE.md (2023-12-19T15:27:58.195Z)
