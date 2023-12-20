@@ -91,3 +91,4 @@ self.addEventListener('fetch', (event) => {
 // [Build Revision 9/20]: feat(overdrive): add mega death laser beam rendering and particle discharge (2023-12-15T15:20:00)
 // [Build Revision 10/20]: feat(overdrive): add matrix bullet-time slow-mo and beam piercing collision (2023-12-17T11:35:00)
 // [Build Revision 11/20]: feat(overdrive): bind hotkeys (Q/E) and mobile on-screen overdrive HUD button (2023-12-19T14:10:00)
+// [Build Revision 12/20]: feat(survival): add endless survival game mode selector to title screen (2023-12-20T16:45:00)
