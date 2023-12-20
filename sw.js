@@ -192,3 +192,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 90/134]: docs(arch): create dedicated survival wave engine specification in architecture/SURVIVAL_WAVE_ENGINE.md (2023-12-19T20:42:24.360Z)
 // [Expansion Doc Milestone 91/134]: docs(arch): document wave state machine transitions and difficulty scaling equations (2023-12-19T23:19:37.443Z)
 // [Expansion Doc Milestone 92/134]: docs(arch): create dedicated achievement event bus specification in architecture/ACHIEVEMENT_EVENT_BUS.md (2023-12-20T01:56:50.526Z)
+// [Expansion Doc Milestone 93/134]: docs(arch): document event dispatch lifecycle, local storage updates, and toast rendering (2023-12-20T04:34:03.609Z)
