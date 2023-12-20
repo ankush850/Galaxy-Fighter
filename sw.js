@@ -195,3 +195,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 93/134]: docs(arch): document event dispatch lifecycle, local storage updates, and toast rendering (2023-12-20T04:34:03.609Z)
 // [Expansion Doc Milestone 94/134]: docs(gdd): create comprehensive API and game state reference in docs/API_AND_STATE_REFERENCE.md (2023-12-20T07:11:16.691Z)
 // [Expansion Doc Milestone 95/134]: docs(gdd): document global gameState schema properties, types, and defaults (2023-12-20T09:48:29.774Z)
+// [Expansion Doc Milestone 96/134]: docs(gdd): document lifecycle initialization, render sequence, and game over teardown (2023-12-20T12:25:42.857Z)
