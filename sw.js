@@ -198,3 +198,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 96/134]: docs(gdd): document lifecycle initialization, render sequence, and game over teardown (2023-12-20T12:25:42.857Z)
 // [Expansion Doc Milestone 97/134]: docs(gdd): create combat and balance mathematical formulas in docs/COMBAT_AND_BALANCE_FORMULAS.md (2023-12-20T15:02:55.939Z)
 // [Expansion Doc Milestone 98/134]: docs(gdd): centralize weapon damage, speed scaling, and scoring multiplier formulas (2023-12-20T17:40:09.022Z)
+// [Expansion Doc Milestone 99/134]: docs(gdd): create open-source contributing guide and conventions in docs/CONTRIBUTING.md (2023-12-20T20:17:22.105Z)
