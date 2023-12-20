@@ -196,3 +196,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 94/134]: docs(gdd): create comprehensive API and game state reference in docs/API_AND_STATE_REFERENCE.md (2023-12-20T07:11:16.691Z)
 // [Expansion Doc Milestone 95/134]: docs(gdd): document global gameState schema properties, types, and defaults (2023-12-20T09:48:29.774Z)
 // [Expansion Doc Milestone 96/134]: docs(gdd): document lifecycle initialization, render sequence, and game over teardown (2023-12-20T12:25:42.857Z)
+// [Expansion Doc Milestone 97/134]: docs(gdd): create combat and balance mathematical formulas in docs/COMBAT_AND_BALANCE_FORMULAS.md (2023-12-20T15:02:55.939Z)
