@@ -202,3 +202,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 100/134]: docs(gdd): document zero-dependency execution rules and canvas 2D GC optimization guidelines (2023-12-20T22:54:35.187Z)
 // [Expansion Doc Milestone 101/134]: refactor(features): cross-link all feature specifications with architectural design docs (2023-12-21T01:31:48.270Z)
 // [Expansion Doc Milestone 102/134]: refactor(docs): synchronize navigation index in docs/GAME_DESIGN.md and README.md (2023-12-21T04:09:01.353Z)
+// [Expansion Doc Milestone 103/134]: style(docs): format all mathematical expressions with LaTeX math blocks (2023-12-21T06:46:14.436Z)
