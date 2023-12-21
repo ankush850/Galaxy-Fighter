@@ -200,3 +200,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 98/134]: docs(gdd): centralize weapon damage, speed scaling, and scoring multiplier formulas (2023-12-20T17:40:09.022Z)
 // [Expansion Doc Milestone 99/134]: docs(gdd): create open-source contributing guide and conventions in docs/CONTRIBUTING.md (2023-12-20T20:17:22.105Z)
 // [Expansion Doc Milestone 100/134]: docs(gdd): document zero-dependency execution rules and canvas 2D GC optimization guidelines (2023-12-20T22:54:35.187Z)
+// [Expansion Doc Milestone 101/134]: refactor(features): cross-link all feature specifications with architectural design docs (2023-12-21T01:31:48.270Z)
