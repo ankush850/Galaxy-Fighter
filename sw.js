@@ -210,3 +210,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 108/134]: docs(hangar): document currency earning rates for scout and heavy armored alien craft (iteration 2) (2023-12-21T19:52:19.849Z)
 // [Expansion Doc Milestone 109/134]: docs(hangar): define local storage persistence schema for banked coin balances (iteration 2) (2023-12-21T22:29:32.932Z)
 // [Expansion Doc Milestone 110/134]: docs(hangar): add expanded magazine tier cost table and capacity progression math (iteration 2) (2023-12-22T01:06:46.015Z)
+// [Expansion Doc Milestone 111/134]: docs(hangar): document ion thruster vertical velocity acceleration multipliers (iteration 2) (2023-12-22T03:43:59.097Z)
