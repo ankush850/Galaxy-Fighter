@@ -211,3 +211,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 109/134]: docs(hangar): define local storage persistence schema for banked coin balances (iteration 2) (2023-12-21T22:29:32.932Z)
 // [Expansion Doc Milestone 110/134]: docs(hangar): add expanded magazine tier cost table and capacity progression math (iteration 2) (2023-12-22T01:06:46.015Z)
 // [Expansion Doc Milestone 111/134]: docs(hangar): document ion thruster vertical velocity acceleration multipliers (iteration 2) (2023-12-22T03:43:59.097Z)
+// [Expansion Doc Milestone 112/134]: docs(hangar): specify quantum overclock duration formulas for arcade powerups (iteration 2) (2023-12-22T06:21:12.180Z)
