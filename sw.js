@@ -224,3 +224,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 122/134]: docs(aircraft): add class hierarchy diagram for player aircraft entity inheritance (iteration 2) (2023-12-23T08:33:23.007Z)
 // [Expansion Doc Milestone 123/134]: docs(aircraft): document title screen fighter card selection state synchronization (iteration 2) (2023-12-23T11:10:36.090Z)
 // [Expansion Doc Milestone 124/134]: docs(overdrive): modularize fury overdrive ultimate ability into features/fury_overdrive.md (iteration 2) (2023-12-23T13:47:49.172Z)
+// [Expansion Doc Milestone 125/134]: docs(overdrive): define fury gauge charging equations for kills, asteroids, and coins (iteration 2) (2023-12-23T16:25:02.255Z)
