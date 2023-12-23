@@ -226,3 +226,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 124/134]: docs(overdrive): modularize fury overdrive ultimate ability into features/fury_overdrive.md (iteration 2) (2023-12-23T13:47:49.172Z)
 // [Expansion Doc Milestone 125/134]: docs(overdrive): define fury gauge charging equations for kills, asteroids, and coins (iteration 2) (2023-12-23T16:25:02.255Z)
 // [Expansion Doc Milestone 126/134]: docs(overdrive): document 1280px screen-wide mega death laser beam render pipeline (iteration 2) (2023-12-23T19:02:15.338Z)
+// [Expansion Doc Milestone 127/134]: docs(overdrive): detail dual-frequency cyan and gold particle lightning discharge VFX (iteration 2) (2023-12-23T21:39:28.421Z)
