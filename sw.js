@@ -221,3 +221,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 119/134]: docs(aircraft): document thunder gold heavy plasma blast radius and muzzle flash VFX (iteration 2) (2023-12-23T00:41:43.759Z)
 // [Expansion Doc Milestone 120/134]: docs(aircraft): document viper recon fighter magnetic coin attractor coils (iteration 2) (2023-12-23T03:18:56.842Z)
 // [Expansion Doc Milestone 121/134]: docs(aircraft): document cosmo cruiser battleship reinforced hull and bonus magazine slot (iteration 2) (2023-12-23T05:56:09.924Z)
+// [Expansion Doc Milestone 122/134]: docs(aircraft): add class hierarchy diagram for player aircraft entity inheritance (iteration 2) (2023-12-23T08:33:23.007Z)
