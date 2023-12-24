@@ -233,3 +233,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 131/134]: docs(overdrive): add state machine transition diagram for fury charging and discharge (iteration 2) (2023-12-24T08:08:20.751Z)
 // [Expansion Doc Milestone 132/134]: docs(survival): modularize endless survival wave mode into features/endless_survival.md (iteration 2) (2023-12-24T10:45:33.834Z)
 // [Expansion Doc Milestone 133/134]: docs(survival): document 15-kill wave completion threshold and scaling formulas (iteration 2) (2023-12-24T13:22:46.917Z)
+// [Expansion Doc Milestone 134/134]: docs(survival): detail dynamic celestial map cycling across all 4 cosmic regions (iteration 2) (2023-12-24T16:00:00)
