@@ -230,3 +230,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 128/134]: docs(overdrive): document matrix bullet-time 55% slow-mo delta time split mechanics (iteration 2) (2023-12-24T00:16:41.503Z)
 // [Expansion Doc Milestone 129/134]: docs(overdrive): specify boss DPS thermal cutting rate during active overdrive state (iteration 2) (2023-12-24T02:53:54.586Z)
 // [Expansion Doc Milestone 130/134]: docs(overdrive): document mobile touch overdrive button pulsing animation triggers (iteration 2) (2023-12-24T05:31:07.669Z)
+// [Expansion Doc Milestone 131/134]: docs(overdrive): add state machine transition diagram for fury charging and discharge (iteration 2) (2023-12-24T08:08:20.751Z)
