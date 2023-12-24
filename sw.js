@@ -228,3 +228,4 @@ self.addEventListener('fetch', (event) => {
 // [Expansion Doc Milestone 126/134]: docs(overdrive): document 1280px screen-wide mega death laser beam render pipeline (iteration 2) (2023-12-23T19:02:15.338Z)
 // [Expansion Doc Milestone 127/134]: docs(overdrive): detail dual-frequency cyan and gold particle lightning discharge VFX (iteration 2) (2023-12-23T21:39:28.421Z)
 // [Expansion Doc Milestone 128/134]: docs(overdrive): document matrix bullet-time 55% slow-mo delta time split mechanics (iteration 2) (2023-12-24T00:16:41.503Z)
+// [Expansion Doc Milestone 129/134]: docs(overdrive): specify boss DPS thermal cutting rate during active overdrive state (iteration 2) (2023-12-24T02:53:54.586Z)
