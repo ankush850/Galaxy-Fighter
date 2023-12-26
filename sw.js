@@ -95,3 +95,4 @@ self.addEventListener('fetch', (event) => {
 // [Build Revision 13/20]: feat(survival): implement infinite scaling waves and dynamic sector cycling (2023-12-22T09:30:00)
 // [Build Revision 14/20]: feat(survival): add survival wave HUD counter and periodic mothership spawns (2023-12-23T13:15:00)
 // [Build Revision 15/20]: fix(audio): synthesize procedural sfx for overdrive activation and upgrades (2023-12-25T11:00:00)
+// [Build Revision 16/20]: perf(render): optimize entity filtering and garbage collection capping (2023-12-26T15:40:00)
